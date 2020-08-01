@@ -9,3 +9,11 @@ def home():
 @app.route('/bpmap')
 def bpmap():
     return render_template("bpmap.html")
+
+@app.route('/chart')
+def chart():
+    return render_template('chart.html')
+
+@app.route('/poem')
+def poem():
+    return render_template('poem.html')

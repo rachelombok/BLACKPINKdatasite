@@ -6,6 +6,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/home')
+def testhome():
+    return render_template('home.html')
+
 @app.route('/bpmap')
 def bpmap():
     return render_template("bpmap.html")

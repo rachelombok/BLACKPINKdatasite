@@ -1,0 +1,39 @@
+.navlink:hover{
+    color: black;
+    opacity: 1;
+    transition: all 0.3s ease;
+    background: linear-gradient(180deg, #000000, #ffb3df);
+    
+}
+
+.navdropdownlink:hover{
+    color: black;
+    width: auto;
+    opacity: 1;
+    transition: all 0.3s ease;
+    background: linear-gradient(180deg, #000000, #ffb3df);
+    
+}
+
+#basic-nav-dropdown{
+    color: #ffb3df;
+}
+
+
+#basic-nav-dropdown:hover{
+    background-color: #ffb3df;
+    border-radius: 2px;
+    color: black;
+}
+
+.divider {
+    position: relative;
+    margin-right: 2rem;
+    content: '';
+      height: 3rem;
+      width: 0.1rem;
+      background: black;
+      position: absolute;
+      top: -0.3rem;
+      right: -2rem;
+  }

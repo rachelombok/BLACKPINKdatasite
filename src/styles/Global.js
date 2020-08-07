@@ -7,9 +7,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Cousine', monospace;
     color: #ffb3df;
   }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Cousine', monospace;
-    text-transform: uppercase;
+    
   }
   h1 {
       font-size: 6rem;
@@ -26,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 3.1rem;
     color: #ffb3df;
   }
+
   p, li, span {
       font-size: 1.4rem;
       line-height: 2.8rem;
@@ -34,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -52,7 +55,7 @@ html {
   font-size: 62.5%;
 }
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-    display: block;
+  display: block;
 }
 body {
   margin: 0;
@@ -63,7 +66,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color: #000;
 }
 [tabindex="-1"]:focus {
   outline: 0 !important;
@@ -123,6 +126,7 @@ strong {
 small {
   font-size: 80%;
 }
+
 sub,
 sup {
   position: relative;
@@ -137,13 +141,14 @@ sup {
   top: -.5em;
 }
 a {
-  color: green;
-  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  padding: 0 0.5rem;
   background-color: transparent;
 }
 a:hover {
-  color: #ffb3df;
-  text-decoration: underline;
+  color: white;
+  text-decoration: none;
 }
 a:not([href]):not([tabindex]) {
   color: inherit;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-//import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
 import { Navbar,Nav,NavDropdown,Form,FormControl,Button, Popover, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import './navbar.css';
 
@@ -14,7 +14,7 @@ border-radius: 3px;
 
 const StyledNav = styled(Navbar)`
 color: green;
-font-size: 0.8em;
+font-size: 0.9em;
 font-family: 'Cousine', monospace;
 font-color: #ffb3df;
 margin: 0em;
@@ -43,7 +43,7 @@ color: #ffb3df;
 const StyledNavDropdownItem = styled(NavDropdown.Item)`
 background-color: black;
 color: #ffb3df;
-font-size: 0.8em;
+font-size: 1.3em;
 opacity: 1;
 transition: all 0.3s ease;
 border-radius: 0px;
@@ -60,7 +60,9 @@ const navstyle = {
 
 }
 
+
 class Navigation extends React.Component{
+  
 
     render(){
         return(
@@ -70,18 +72,37 @@ class Navigation extends React.Component{
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <StyledNav className="mr-auto">
-      <StyledNavLink className='navlink' href="#home">Home</StyledNavLink>
-      <StyledNavLink className='navlink' href="#link">Link</StyledNavLink>
-      <StyledNavDropdown title="Legend" id="basic-nav-dropdown">
-        <StyledNavDropdownItem className='navdropdownlink' href="#action/3.1">Action</StyledNavDropdownItem>
-        <StyledNavDropdownItem href="#action/3.2">Another action</StyledNavDropdownItem>
-        <StyledNavDropdownItem href="#action/3.3">Something</StyledNavDropdownItem>
+      <StyledNavLink className='navlink' href="/">Home</StyledNavLink>
+      <StyledNavLink className='navlink' href="/music">Music</StyledNavLink>
+      <StyledNavLink className='navlink' href="/spotify">Spotify</StyledNavLink>
+      <StyledNavLink className='navlink' href="/instagram">Instagram</StyledNavLink>
+      <StyledNavLink className='navlink' href="/youtube" style={{marginRight:'20px'}} >Youtube</StyledNavLink>
+      <p className='divider' ></p>
+      <StyledNavLink className='navlink' href="/about" >About</StyledNavLink>
+      <StyledNavLink className='navlink' href="/contact" >Contact</StyledNavLink>
+      <StyledNavDropdown  title="Legend" id="basic-nav-dropdown">
+      <NavDropdown.Header>Social Media</NavDropdown.Header>
+        <StyledNavDropdownItem href="/instagram">Instagram</StyledNavDropdownItem>
+        <StyledNavDropdownItem href="/facebook">Facebook</StyledNavDropdownItem>
+        <StyledNavDropdownItem className='navdropdownlink' href="#action/3.1">TikTok</StyledNavDropdownItem>
         <NavDropdown.Divider />
-        <StyledNavDropdownItem href="#action/3.4">Separated link</StyledNavDropdownItem>
+        <NavDropdown.Header>Music</NavDropdown.Header>
+        <StyledNavDropdownItem href="/lyrics">Lyrical Data</StyledNavDropdownItem>
+        <StyledNavDropdownItem href="/mvdata">Music Video Data</StyledNavDropdownItem>
+        <StyledNavDropdownItem className='navdropdownlink' href="/youtube">YouTube</StyledNavDropdownItem>
+        <StyledNavDropdownItem className='navdropdownlink' href="/spotify">Spotify</StyledNavDropdownItem>
+        <NavDropdown.Divider />
+        <NavDropdown.Header>Miscellaneous</NavDropdown.Header>
+        <StyledNavDropdownItem href="/tunefind">Tunefind</StyledNavDropdownItem>
+        <StyledNavDropdownItem href="/about">About</StyledNavDropdownItem>
+        <StyledNavDropdownItem className='navdropdownlink' href="/contact">Contact</StyledNavDropdownItem>
+        
       </StyledNavDropdown>
     </StyledNav>
   </Navbar.Collapse>
 </Navbar>
+
+
 
 
             </div>

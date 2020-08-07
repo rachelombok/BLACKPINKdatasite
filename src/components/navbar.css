@@ -28,12 +28,16 @@
 
 .divider {
     position: relative;
-    margin-right: 2rem;
-    content: '';
-      height: 3rem;
-      width: 0.1rem;
-      background: black;
-      position: absolute;
-      top: -0.3rem;
-      right: -2rem;
-  }
+        margin-right: 14.1rem;
+        margin-left: 6px;
+        content: '';
+        height: 2.3rem;
+        width: 0.1rem;
+        background: pink;
+        position: absolute;
+        top: 0.5rem;
+        right: 20rem;
+    
+}
+
+

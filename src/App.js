@@ -7,6 +7,7 @@ import Navigation from './components/navigation.js';
 import Footer from './components/footer.js'
 import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
 import About from './components/about.js'
+import FacebookChart from './components/facebookchart.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component{
@@ -24,6 +25,9 @@ class App extends React.Component{
           <Switch>
             <Route path='/about'>
               <About/>
+            </Route>
+            <Route path='/fbchart'>
+              <FacebookChart/>
             </Route>
           </Switch>
         </Router>

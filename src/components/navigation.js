@@ -32,11 +32,11 @@ color: #ffb3df;
 
 const StyledNavbarBrand = styled(Navbar.Brand)`
 font-family: 'Cousine', monospace;
-background: white;
 `;
 
 const StyledNavDropdown = styled(NavDropdown)`
 color: #ffb3df;
+background-color: black;
 
 `;
 
@@ -80,23 +80,23 @@ class Navigation extends React.Component{
       <p className='divider' ></p>
       <StyledNavLink className='navlink' href="/about" >About</StyledNavLink>
       <StyledNavLink className='navlink' href="/contact" >Contact</StyledNavLink>
-      <StyledNavDropdown  title="Legend" id="basic-nav-dropdown">
-      <NavDropdown.Header>Social Media</NavDropdown.Header>
-        <StyledNavDropdownItem href="/instagram">Instagram</StyledNavDropdownItem>
-        <StyledNavDropdownItem href="/facebook">Facebook</StyledNavDropdownItem>
-        <StyledNavDropdownItem className='navdropdownlink' href="#action/3.1">TikTok</StyledNavDropdownItem>
-        <NavDropdown.Divider />
-        <NavDropdown.Header>Music</NavDropdown.Header>
-        <StyledNavDropdownItem href="/lyrics">Lyrical Data</StyledNavDropdownItem>
-        <StyledNavDropdownItem href="/mvdata">Music Video Data</StyledNavDropdownItem>
-        <StyledNavDropdownItem className='navdropdownlink' href="/youtube">YouTube</StyledNavDropdownItem>
-        <StyledNavDropdownItem className='navdropdownlink' href="/spotify">Spotify</StyledNavDropdownItem>
-        <NavDropdown.Divider />
-        <NavDropdown.Header>Miscellaneous</NavDropdown.Header>
-        <StyledNavDropdownItem href="/tunefind">Tunefind</StyledNavDropdownItem>
-        <StyledNavDropdownItem href="/about">About</StyledNavDropdownItem>
-        <StyledNavDropdownItem className='navdropdownlink' href="/contact">Contact</StyledNavDropdownItem>
-        
+      <StyledNavDropdown title="Legend" id="basic-nav-dropdown" bsPrefix=''>
+        <NavDropdown.Header>Social Media</NavDropdown.Header>
+          <StyledNavDropdownItem className='navdropdownlink' href="/instagram">Instagram</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/facebook">Facebook</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/tiktok">TikTok</StyledNavDropdownItem>
+          
+          <NavDropdown.Header>Music</NavDropdown.Header>
+          <StyledNavDropdownItem className='navdropdownlink' href="/lyrics">Lyrical Data</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/mvdata">Music Video Data</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/youtube">YouTube</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/spotify">Spotify</StyledNavDropdownItem>
+          
+          <NavDropdown.Header>Miscellaneous</NavDropdown.Header>
+          <StyledNavDropdownItem className='navdropdownlink' href="/tunefind">Tunefind</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/about">About</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/contact">Contact</StyledNavDropdownItem>
+          
       </StyledNavDropdown>
     </StyledNav>
   </Navbar.Collapse>

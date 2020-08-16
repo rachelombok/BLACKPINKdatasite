@@ -6,7 +6,7 @@ import { AreaClosed, LinePath } from '@vx/shape';
 import { LinearGradient } from '@vx/gradient';
 import { Group } from '@vx/group';
 import { extent, max } from 'd3-array';
-
+import './chart.css';
 
 class FacebookChart extends React.Component{
   state = {
@@ -25,7 +25,7 @@ class FacebookChart extends React.Component{
           d.difference = +d.difference)
          
         })
-    this.setState({data})
+    this.setState({data: data})
     console.log(data)
     }).catch(function(err) {
         throw err;
@@ -39,8 +39,8 @@ class FacebookChart extends React.Component{
 
     render(){
       const { data } = this.state;
-      const width = 750;
-      const height = 400;
+      const width = 1200;
+      const height = 640;
 
       const x = d => new Date(d.date);
       const y = d => d.likes;
@@ -113,6 +113,26 @@ class FacebookChart extends React.Component{
           stroke={'#ffffff'}
           tickStroke={'#fff'}
           numTicks={5}
+          fill={'white'}
+          
+          tickLabelProps={
+            (/* value, index */) => ({
+              fill: 'white',
+              fontSize: 9,
+              fontFamily: 'sans-serif',
+              textAnchor: 'end',
+            })
+          }
+          labelProps={{
+            
+            fill: 'white',
+            fontSize: 18,
+            strokeWidth: 0,
+            stroke: '#fff',
+            paintOrder: 'stroke',
+            fontFamily: 'sans-serif',
+            textAnchor: 'inherit'
+          }}
 
         />
 
@@ -121,7 +141,26 @@ class FacebookChart extends React.Component{
           top={yMax}
           label={'Years'}
           stroke={'#ffffff'}
-          
+          tickStroke={'#fff'}
+          numTicks={5}
+          tickLabelProps={
+            (/* value, index */) => ({
+              fill: 'white',
+              fontSize: 12,
+              fontFamily: 'sans-serif',
+              textAnchor: 'middle',
+            })
+          }
+          labelProps={{
+            
+            fill: 'white',
+            fontSize: 18,
+            strokeWidth: 0,
+            stroke: '#fff',
+            paintOrder: 'stroke',
+            fontFamily: 'sans-serif',
+            textAnchor: 'middle',
+          }}
         />
         </Group>
             </svg>

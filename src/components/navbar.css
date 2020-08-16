@@ -7,7 +7,7 @@
 }
 
 .navdropdownlink:hover{
-    color: black;
+    color: white;
     width: auto;
     opacity: 1;
     transition: all 0.3s ease;
@@ -17,6 +17,9 @@
 
 #basic-nav-dropdown{
     color: #ffb3df;
+    background-color: black;
+    
+    
 }
 
 
@@ -41,3 +44,15 @@
 }
 
 
+.dropdown-header{
+    background: black;
+}
+
+.dropdown-divider{
+    color: red;
+}
+
+.navbar-brand{
+    background: yellow;
+    color: white;
+}

@@ -26,7 +26,7 @@ class App extends React.Component{
             <Route path='/about'>
               <About/>
             </Route>
-            <Route path='/fbchart'>
+            <Route path='/facebook'>
               <FacebookChart/>
             </Route>
           </Switch>

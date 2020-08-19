@@ -2,16 +2,24 @@ import React from 'react';
 import * as d3 from 'd3';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { AreaClosed, LinePath } from '@vx/shape';
+import { AreaClosed, LinePath, Bar, Line } from '@vx/shape';
 import { LinearGradient } from '@vx/gradient';
 import { Group } from '@vx/group';
-import { extent, max } from 'd3-array';
+import { localPoint } from "@vx/event";
+import { withTooltip, Tooltip } from "@vx/tooltip";
+import { extent, max, bisector } from 'd3-array';
 import './chart.css';
+
+const xSelector = d => new Date(d.date);
+const ySelector = d => d.price;
+
+const bisectDate = bisector(xSelector).left;
 
 class FacebookChart extends React.Component{
   state = {
     data: []
   };
+
 
 
   async componentDidMount() {
@@ -34,6 +42,24 @@ class FacebookChart extends React.Component{
     
   }
 
+  handleTooltip = ({ event, data, xSelector, xScale, yScale }) => {
+    const { showTooltip } = this.props;
+    const { x } = localPoint(event);
+    const x0 = xScale.invert(x);
+    const index = bisectDate(data, x0, 1);
+    const d0 = data[index - 1];
+    const d1 = data[index];
+    let d = d0;
+    if (d1 && d1.date) {
+      d = x0 - xSelector(d0) > xSelector(d1) - x0 ? d1 : d0;
+    }
+    showTooltip({
+      tooltipData: d,
+      tooltipLeft: xScale(xSelector(d)),
+      tooltipTop: yScale(ySelector(d))
+    });
+  };
+
   
    
 
@@ -41,9 +67,22 @@ class FacebookChart extends React.Component{
       const { data } = this.state;
       const width = 1200;
       const height = 640;
+      let events = false;
 
       const x = d => new Date(d.date);
       const y = d => d.likes;
+      const bisectDate = bisector(xSelector).left;
+
+      let tooltipTimeout;
+
+      const {
+        hideTooltip,
+        tooltipData,
+        tooltipTop,
+        tooltipLeft,
+        showTooltip,
+        tooltipOpen
+      } = this.props;
 
       // Bounds
       const margin = {
@@ -81,6 +120,7 @@ class FacebookChart extends React.Component{
         from='#fbc2eb'
         to='#a6c1ee'
         id='gradient'
+        
       />
 
           <Group top={margin.top} left={margin.left}>
@@ -94,7 +134,52 @@ class FacebookChart extends React.Component{
             stroke="#FFF"
             strokeLinecap="round"
             fill="transparent"
+            onClick={data => event => {
+              if (!events) return;
+              alert(`clicked: ${JSON.stringify(data)}`);
+            }}
+            onMouseLeave={data => event => {
+              tooltipTimeout = setTimeout(() => {
+                hideTooltip();
+              }, 300);
+            }}
+            onMouseMove={data => event => {
+              if (tooltipTimeout) clearTimeout(tooltipTimeout);
+              showTooltip({
+                tooltipData: data,
+                tooltipTop: margin.top + yScale(y(data.data)),
+                tooltipLeft: margin.left + data.width + 75
+              });
+            }}
           />
+          <Bar
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            fill="transparent"
+            data={data}
+            onMouseMove={data => event =>
+              this.handleTooltip({
+                event,
+                data,
+                xSelector,
+                xScale,
+                yScale
+              })}
+            onMouseLeave={data => event => hideTooltip()}
+            onTouchEnd={data => event => hideTooltip()}
+            onTouchMove={data => event =>
+              this.handleTooltip({
+                event,
+                data,
+                xSelector,
+                xScale,
+                yScale
+              })}
+          />
+
+          
 
             <AreaClosed
             data={data}
@@ -103,6 +188,7 @@ class FacebookChart extends React.Component{
             x={d => xScale(x(d))}
             y={d => yScale(y(d))}
             fill={"url(#gradient)"}
+            
             />
        
         <AxisLeft
@@ -162,8 +248,28 @@ class FacebookChart extends React.Component{
             textAnchor: 'middle',
           }}
         />
+        
         </Group>
             </svg>
+            {tooltipOpen && (
+          <Tooltip
+            top={tooltipTop}
+            left={tooltipLeft}
+            style={{
+              minWidth: 60,
+              backgroundColor: "rgba(0,0,0,0.9)",
+              color: "white"
+            }}
+          >
+            <div style={{ color: 'red' }}>
+              <strong>{tooltipData.key}</strong>
+            </div>
+            <div>{tooltipData.data[tooltipData.key]}℉</div>
+            <div>
+              <small>{tooltipData.xFormatted}</small>
+            </div>
+          </Tooltip>
+        )}
         </div>
     );
 }
@@ -171,4 +277,4 @@ class FacebookChart extends React.Component{
 
 }
 
-export default FacebookChart;
+export default withTooltip(FacebookChart);

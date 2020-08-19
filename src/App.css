@@ -37,3 +37,21 @@
     transform: rotate(360deg);
   }
 }
+
+.current {
+  font-size: 20px;
+  clear: both;
+}
+
+.bit-header {
+text-align: center;
+font-size: 30px;
+}
+
+.plus {
+  color: green !important;
+}
+
+.minus {
+  color: red !important;
+}

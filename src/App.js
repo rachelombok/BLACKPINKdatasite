@@ -8,6 +8,7 @@ import Footer from './components/footer.js'
 import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
 import About from './components/about.js'
 import FacebookChart from './components/facebookchart.js';
+import Chart from './components/test.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component{
@@ -29,6 +30,10 @@ class App extends React.Component{
             <Route path='/facebook'>
               <FacebookChart/>
             </Route>
+            <Route path='/test'>
+              <Chart/>
+            </Route>
+            
           </Switch>
         </Router>
 

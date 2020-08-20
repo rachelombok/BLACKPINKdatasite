@@ -150,6 +150,7 @@ class Chart extends Component {
                 xScale,
                 yScale
               })}
+              
             onMouseLeave={data => event => hideTooltip()}
             onTouchEnd={data => event => hideTooltip()}
             onTouchMove={data => event =>

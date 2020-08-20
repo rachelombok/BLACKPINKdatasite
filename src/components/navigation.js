@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
 import { Navbar,Nav,NavDropdown,Form,FormControl,Button, Popover, OverlayTrigger, Tooltip } from 'react-bootstrap'
-import './navbar.css';
+import '../extra/navbar.css';
 
 
 const StyledNavbar = styled(Navbar)`

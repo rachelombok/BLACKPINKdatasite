@@ -8,7 +8,8 @@ import { Group } from '@vx/group';
 import { localPoint } from "@vx/event";
 import { withTooltip, Tooltip } from "@vx/tooltip";
 import { extent, max, bisector } from 'd3-array';
-import './chart.css';
+import '../extra/chart.css';
+
 
 const xSelector = d => new Date(d.date);
 const ySelector = d => d.price;
@@ -19,8 +20,6 @@ class FacebookChart extends React.Component{
   state = {
     data: []
   };
-
-
 
   async componentDidMount() {
    
@@ -61,8 +60,6 @@ class FacebookChart extends React.Component{
   };
 
   
-   
-
     render(){
       const { data } = this.state;
       const width = 1200;

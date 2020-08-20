@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-
 import About from './components/about.js'
 import FacebookChart from './components/facebookchart.js';
 import Chart from './components/test.js';
+import Mapportal from './components/map.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component{
@@ -32,6 +33,9 @@ class App extends React.Component{
             </Route>
             <Route path='/test'>
               <Chart/>
+            </Route>
+            <Route path='/map'>
+              <Mapportal/>
             </Route>
             
           </Switch>

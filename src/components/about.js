@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Col, Image, Badge, Jumbotron, Button, Row } from 'react-bootstrap';
 import styled from 'styled-components';
-import './about.css'
+import '../extra/about.css'
 
 const AboutWrapper = styled.div`
 margin: 10rem 0;

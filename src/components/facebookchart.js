@@ -123,8 +123,8 @@ class FacebookChart extends React.Component{
           <Group top={margin.top} left={margin.left}>
           <LinePath
             data={data}
-            xScale={xScale}
-            yScale={yScale}
+            //xScale={xScale}
+            //yScale={yScale}
             x={d => xScale(x(d))}
             y={d => yScale(y(d))}
             strokeWidth={5}
@@ -180,7 +180,7 @@ class FacebookChart extends React.Component{
 
             <AreaClosed
             data={data}
-            xScale={xScale}
+            //xScale={xScale}
             yScale={yScale}
             x={d => xScale(x(d))}
             y={d => yScale(y(d))}
@@ -261,7 +261,7 @@ class FacebookChart extends React.Component{
             <div style={{ color: 'red' }}>
               <strong>{tooltipData.key}</strong>
             </div>
-            <div>{tooltipData.data[tooltipData.key]}℉</div>
+            <div>{tooltipData.data[tooltipData.key]}</div>
             <div>
               <small>{tooltipData.xFormatted}</small>
             </div>

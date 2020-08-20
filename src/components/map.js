@@ -1,8 +1,7 @@
 import React from "react";
 import L from "leaflet";
-import statesData from '../extra/us-states.json';
 import countriesData from '../extra/countries.json';
-//import './map.css'
+import '../extra/map.css';
 import 'leaflet/dist/leaflet.css';
 const style = {
   width: "75%",
@@ -10,7 +9,7 @@ const style = {
   margin: "auto",
   display: 'block'
 };
-
+/*
 const mapStyle = (feature) => {
   return ({
     weight: 2,
@@ -18,12 +17,41 @@ const mapStyle = (feature) => {
     color: "white",
     dashArray: "3",
     fillOpacity: 0.7,
-    fillColor: "#FFEDA0"
+    fillColor: getColor(feature.properties.igfollowers)
 
   });
+}*/
+
+const getColor = (d) =>{
+  return d > 10000000 ? '#800026' :
+        d > 50000000  ? '#BD0026' :
+        d > 20000000  ? '#E31A1C' :
+        d > 10000000  ? '#FC4E2A' :
+        d > 500000   ? '#FD8D3C' :
+        d > 200000   ? '#FEB24C' :
+        d > 100000   ? '#FED976' :
+                    '#FFEDA0';
+}
+const mapStyle = (feature) => {
+  return ({
+      weight: 1.5,
+      opacity: 1,
+      color: "white",
+      dashArray: "0",
+      fillOpacity: 0.7,
+      fillColor: getColor(feature.properties.igfollowers)
+
+    });
 }
 
+const thousands_separators = (num) => {
+    var num_parts = num.toString().split(".");
+    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return num_parts.join(".");
+  }
+
 class Mapportal extends React.Component {
+    
   componentDidMount() {
     // create map
     this.map = L.map("map", {
@@ -41,10 +69,7 @@ class Mapportal extends React.Component {
       ]
     });
 
-    this.geojson = L.geoJson(statesData, {
-      style: mapStyle,
-      onEachFeature: this.onEachFeature
-    }).addTo(this.map);
+    
 
     this.countries = L.geoJson(countriesData, {
 		style: mapStyle,
@@ -52,10 +77,29 @@ class Mapportal extends React.Component {
     }).addTo(this.map);
     
     var overlay = {
-			"Countries": this.countries,
-			"States" : this.geojson
-	};
-  L.control.layers(overlay).addTo(this.map);
+			"Countries": this.countries
+			
+  };
+  this.info = L.control();
+
+  this.info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+  };
+  this.info.update = function (props) {
+    this._div.innerHTML = '<h4>Instagram Follower Data</h4>' +  
+    (props ? '<b>' + props.name  + '</b><br>' + 
+    (props.igfollowers ? 'Instagram Followers: ' + thousands_separators(props.igfollowers) : "There is no Instagram follower data")
+    
+    : 'Hover over a country</b>');
+  };
+
+  this.info.addTo(this.map);
+
+  
+
+    //L.control.layers(overlay).addTo(this.map);
 
 
     // add layer
@@ -71,6 +115,10 @@ class Mapportal extends React.Component {
     if (this.map.tap) this.map.tap.disable();
 document.getElementById('map').style.cursor='default';
   }
+
+  
+
+  
   
 
   onEachFeature = (feature, layer) => {
@@ -82,30 +130,32 @@ document.getElementById('map').style.cursor='default';
     layer.on("click",function(e){
       // this gets the id for each country, and we can use that to redirect to different pages since each 
       // json layer has different ids. the states are 1-50, and the countries are their official code
-      window.alert(layer.feature.id);
+      window.alert(layer.feature.properties.igfollowers);
   });
   }
   highlightFeature = (e) => {
     var layer = e.target;
 
     layer.setStyle({
-      fillColor: "#FFEDA0",
+      fillColor: '#000',
       weight: 5,
       color: "#666",
-      dashArray: "",
-      fillOpacity: 0.7
+      dashArray: "0",
+      fillOpacity: 1
     });
 
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
       layer.bringToFront();
     }
+    this.info.update(layer.feature.properties);
     //layer.bringToFront();
 
   
   }
   resetHighlight = (event) => {
-	this.geojson.resetStyle(event.target);
-	this.countries.resetStyle(event.target);
+	//this.geojson.resetStyle(event.target);
+  this.countries.resetStyle(event.target);
+  this.info.update();
   }
 
   render() {

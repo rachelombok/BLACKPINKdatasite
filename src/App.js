@@ -35,6 +35,7 @@ class App extends React.Component{
               <Chart/>
             </Route>
             <Route path='/map'>
+             
               <Mapportal/>
             </Route>
             

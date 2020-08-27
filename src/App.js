@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 //import * as d3 from d3;
 import GlobalStyle from './styles/Global.js'
@@ -8,7 +8,7 @@ import Footer from './components/footer.js'
 import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
 import About from './components/about.js'
 import FacebookChart from './components/facebookchart.js';
-import Chart from './components/test.js';
+//import Chart from './components/test.js';
 import Mapportal from './components/map.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -32,7 +32,7 @@ class App extends React.Component{
               <FacebookChart/>
             </Route>
             <Route path='/test'>
-              <Chart/>
+             
             </Route>
             <Route path='/map'>
              

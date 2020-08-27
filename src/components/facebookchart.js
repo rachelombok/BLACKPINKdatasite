@@ -66,6 +66,7 @@ class FacebookChart extends React.Component {
       tooltipData,
       tooltipTop,
       tooltipLeft,
+      showTooltip,
       tooltipOpen,
     } = this.props;
 
@@ -91,7 +92,7 @@ class FacebookChart extends React.Component {
     });
 
     return (
-      <div style={{ position: "absolute" }}>
+      <div >
         <svg width={width} height={height}>
           <LinearGradient from="#fbc2eb" to="#a6c1ee" id="gradient" />
           <Group top={margin.top} left={margin.left}>

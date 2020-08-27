@@ -10,6 +10,7 @@ import About from './components/about.js'
 import FacebookChart from './components/facebookchart.js';
 //import Chart from './components/test.js';
 import Mapportal from './components/map.js';
+import TestChart from './components/testchart.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component{
@@ -23,26 +24,22 @@ class App extends React.Component{
       <div className="App">
         <GlobalStyle/>
         <Navigation/>
-        <Router>
-          <Switch>
-            <Route path='/about'>
-              <About/>
-            </Route>
-            <Route path='/facebook'>
-              <FacebookChart/>
-            </Route>
-            <Route path='/test'>
-             
-            </Route>
-            <Route path='/map'>
-             
-              <Mapportal/>
-            </Route>
-            
-          </Switch>
-        </Router>
-
-        <Footer/>
+          <Router>
+            <Switch>
+              <Route path='/about'>
+                <About/>
+              </Route>
+              <Route path='/facebook'>
+                <FacebookChart/>
+                
+              </Route>
+              <Route path='/map'>
+                <Mapportal/>
+              </Route>
+              
+            </Switch>
+          </Router>
+          <Footer/>
       </div>
     );
   }

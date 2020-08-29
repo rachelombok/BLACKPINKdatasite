@@ -1,7 +1,7 @@
 import React from "react";
 import L from "leaflet";
-import countriesData from '../extra/countries.json';
-import '../extra/map.css';
+import countriesData from '../extra/data/countries.json';
+import '../extra/css/map.css';
 import 'leaflet/dist/leaflet.css';
 const style = {
   width: "75%",

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Col, Image, Badge, Jumbotron, Button, Row } from 'react-bootstrap';
 import styled from 'styled-components';
-import '../extra/about.css'
-
+import '../extra/css/about.css'
+import icecreampic from '../extra/images/icecream1.JPG'
 const AboutWrapper = styled.div`
 margin: 10rem 0;
   flex-direction: column;
@@ -84,7 +84,12 @@ margin: 10rem 0;
 }
 `;
 const jumbotron = {
-  background: 'green'
+  
+  backgroundImage: `url(${icecreampic})`,
+  backgroundSize: 'cover',
+  display: 'block'
+  
+  
 }
 
 
@@ -92,12 +97,12 @@ class About extends React.Component{
     render(){
       return(
         <div>
-            <Jumbotron fluid style={jumbotron}>
-  <Container>
-    <h1>Fluid jumbotron</h1>
+            <Jumbotron fluid className='jumbotron'>
+              
+  <Container className='tint'>
+    <h1>About</h1>
     <p>
-      This is a modified jumbotron that occupies the entire horizontal space of
-      its parent.
+      about bp and this site
     </p>
   </Container>
 </Jumbotron>

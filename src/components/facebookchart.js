@@ -8,7 +8,7 @@ import { Group } from "@vx/group";
 import { localPoint } from "@vx/event";
 import { withTooltip, Tooltip } from "@vx/tooltip";
 import { extent, max, bisector } from "d3-array";
-import "../extra/chart.css";
+import "../extra/css/chart.css";
 
 const y = (d) => d.likes;
 const x = (d) => new Date(d.date);

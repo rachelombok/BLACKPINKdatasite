@@ -88,7 +88,7 @@ class Navigation extends React.Component{
           
           <NavDropdown.Header>Music</NavDropdown.Header>
           <StyledNavDropdownItem className='navdropdownlink' href="/lyrics">Lyrical Data</StyledNavDropdownItem>
-          <StyledNavDropdownItem className='navdropdownlink' href="/mvdata">Music Video Data</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/musicvideos">Music Video Data</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/youtube">YouTube</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/spotify">Spotify</StyledNavDropdownItem>
           

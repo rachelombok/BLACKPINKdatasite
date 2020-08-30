@@ -1,8 +1,9 @@
 import React from 'react';
 import { Container, Col, Image, Badge, Jumbotron, Button, Row } from 'react-bootstrap';
 import styled from 'styled-components';
-import '../extra/css/about.css'
+import '../extra/css/home.css'
 import icecreampic from '../extra/images/icecream1.JPG'
+
 const AboutWrapper = styled.div`
 margin-top: 5rem;
   margin-left: 5rem;
@@ -91,17 +92,10 @@ margin-top: 5rem;
   }
 }
 `;
-const jumbotron = {
-  
-  backgroundImage: `url(${icecreampic})`,
-  backgroundSize: 'cover',
-  display: 'block'
-  
-  
-}
 
 
-class About extends React.Component{
+
+class Lyrics extends React.Component{
     render(){
       return(
         <div>
@@ -109,7 +103,7 @@ class About extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>About</h1>
+    <h1>Lyrical Data</h1>
     <p>
       
     </p>
@@ -119,23 +113,13 @@ class About extends React.Component{
 
 
 <AboutWrapper>
-            <h1>About BLACKPINK</h1>
+            <h1>Welcome</h1>
+            <p style={{textAlign:'center'}}>welcome to this site, explore my charts</p>
             
-            <h2>WHat is pink effect?</h2>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id scelerisque lacus, sit amet vestibulum justo. Nam a accumsan sapien. Nam dignissim hendrerit aliquam. Cras sed justo risus. Suspendisse nunc sem, vulputate ut sodales nec, dapibus sit amet sem. Mauris eu dui mattis, molestie est et, ultrices purus. Duis scelerisque, nisl non dictum gravida, arcu mi tempor felis, ut tincidunt odio ante a odio. Mauris ut  ex dolor. Nunc mollis condimentum elit, id rutrum sem <a href='/'>link in a p</a>dapibus in. Suspendisse elit urna, pulvinar non ipsum vitae, egestas porta purus. Sed a scelerisque leo, et eleifend ex. Donec eget odio pharetra, luctus ante nec, scelerisque sem. Suspendisse vel neque quam. Pellentesque porttitor et ante ut posuere.
-
-            </p>
-            <p>
-            Aliquam in lectus efficitur, lobortis velit at, blandit est. In auctor, orci sit amet fringilla rhoncus, turpis ex gravida orci, at ornare diam quam sit amet mi. Donec molestie quam eget auctor imperdiet. Nunc venenatis nunc a lorem faucibus consequat. Suspendisse eget lectus non nisi imperdiet ornare. Vivamus gravida sapien quis nisl malesuada tristique at non purus. Cras vestibulum, lectus at hendrerit tristique, ex metus interdum odio, sit amet bibendum velit quam vel purus. Aenean tristique tincidunt libero, vitae porttitor nisi auctor sit amet. Sed commodo sed erat at ultrices. Nunc cursus, nibh eu aliquam auctor, erat sem euismod velit, in ultricies tortor quam quis orci. Vivamus tempor urna nibh, sed lacinia sapien semper et. Maecenas sed suscipit mauris.
-            </p>
-            
-            <small>this is some lext and  a <a href='/'>links</a> </small>
             </AboutWrapper>
         </div>
       );
     }
 }
 
-export default About;
+export default Lyrics;

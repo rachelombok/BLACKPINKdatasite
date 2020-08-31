@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
 import { Navbar,Nav,NavDropdown,Form,FormControl,Button, Popover, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import '../extra/css/navbar.css';
-
+import brand from '../extra/images/pinkeffect3.png';
 
 const StyledNavbar = styled(Navbar)`
 font-size: 1em;
@@ -13,7 +13,6 @@ border-radius: 3px;
 `;
 
 const StyledNav = styled(Navbar)`
-color: green;
 font-size: 0.9em;
 font-family: 'Cousine', monospace;
 font-color: #ffb3df;
@@ -68,7 +67,7 @@ class Navigation extends React.Component{
         return(
             <div>
 <Navbar bg="transparent" expand="lg">
-  <StyledNavbarBrand href="#home">The Pink Effect</StyledNavbarBrand>
+  <StyledNavbarBrand href="/"><img src={brand} width='150px'></img></StyledNavbarBrand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <StyledNav className="mr-auto">

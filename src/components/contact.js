@@ -99,7 +99,7 @@ class Contact extends React.Component{
     render(){
       return(
         <div>
-            <Jumbotron fluid className='jumbotron'>
+            <Jumbotron fluid className='jumbotron-contact'>
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>

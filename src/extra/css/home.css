@@ -1,7 +1,22 @@
-.jumbotron-about{
-    background-image: url('../images/icecream1.JPG');
+.jumbotron-home{
+  background-image: url('../images/hylt2.jpg');
     position: relative;
-    background-position: 1260px;
+    background-position: 50px -100px;
+    background-size: 1150px;
+    height: 300px; 
+}
+.jumbotron-instagram{
+  background-image: url('../images/d43.jpg');
+    position: relative;
+    background-position: 1280px -50px;
+    background-size: cover;
+    height: 300px; 
+}
+
+.jumbotron-twitter{
+  background-image: url('../images/icecream2.JPG');
+    position: relative;
+    background-position: 1260px -100px;
     background-size: cover;
     height: 300px; 
 }
@@ -14,10 +29,74 @@
     height: 300px; 
 }
 
+.jumbotron-spotify{
+  background-image: url('../images/aiiyl1.jpg');
+    position: relative;
+    background-position: 1250px -250px;
+    background-size: cover;
+    height: 300px; 
+}
+
+.jumbotron-about{
+    background-image: url('../images/icecream1.JPG');
+    position: relative;
+    background-position: 1260px;
+    background-size: cover;
+    height: 300px; 
+}
+
+.jumbotron-contact{
+  background-image: url('../images/boombayah1.jpg');
+  position: relative;
+  background-position: 1150px -150px;
+  background-size: 1000px;
+  height: 300px; 
+}
+
+.jumbotron-facebook{
+  background-image: url('../images/icecream2.JPG');
+    position: relative;
+    background-position: 1260px -100px;
+    background-size: cover;
+    height: 300px; 
+}
+
 .jumbotron-tunefind{
   background-image: url('../images/icecream4.JPG');
     position: relative;
     background-position: 1280px -100px;
+    background-size: cover;
+    height: 300px; 
+}
+
+.jumbotron-music{
+  background-image: url('../images/d41.jpeg');
+    position: relative;
+    background-position: 1280px -200px;
+    background-size: cover;
+    height: 300px; 
+}
+
+.jumbotron-lyrics{
+  background-image: url('../images/stay1.jpeg');
+    position: relative;
+    background-position: 1280px -200px;
+    background-size: cover;
+    height: 300px; 
+}
+
+.jumbotron-musicvideos{
+  background-image: url('../images/hylt1.jpeg');
+    position: relative;
+    background-position: 1280px -200px;
+    background-size: cover;
+    height: 300px; 
+}
+
+.jumbotron-youtube{
+  background-image: url('../images/boombayah2.jpg');
+    position: relative;
+    background-position: 1280px -40px;
     background-size: cover;
     height: 300px; 
 }

@@ -99,7 +99,7 @@ class Music extends React.Component{
     render(){
       return(
         <div>
-            <Jumbotron fluid className='jumbotron'>
+            <Jumbotron fluid className='jumbotron-music'>
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>

@@ -99,7 +99,7 @@ class Spotify extends React.Component{
     render(){
       return(
         <div>
-            <Jumbotron fluid className='jumbotron'>
+            <Jumbotron fluid className='jumbotron-spotify'>
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>

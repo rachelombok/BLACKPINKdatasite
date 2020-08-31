@@ -99,7 +99,7 @@ class Home extends React.Component{
     render(){
       return(
         <div>
-            <Jumbotron fluid className='jumbotron'>
+            <Jumbotron fluid className='jumbotron-home'>
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>

@@ -103,7 +103,7 @@ class Tunefind extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>Tunefind</h1>
+    <h1 className='titlefont'>Tunefind</h1>
     <p>
       
     </p>

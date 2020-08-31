@@ -103,7 +103,7 @@ class Instagram extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>Instagran</h1>
+    <h1 className='titlefont'>Instagram</h1>
     <p>
       
     </p>

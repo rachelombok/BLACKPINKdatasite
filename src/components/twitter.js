@@ -103,7 +103,7 @@ class Twitter extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>Twitter</h1>
+    <h1 className='titlefont'>Twitter</h1>
     <p>
       
     </p>

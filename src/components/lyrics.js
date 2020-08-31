@@ -103,7 +103,7 @@ class Lyrics extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>Lyrical Data</h1>
+    <h1 className='titlefont'>Lyrical Data</h1>
     <p>
       
     </p>

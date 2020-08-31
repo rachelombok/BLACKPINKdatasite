@@ -103,7 +103,7 @@ class Home extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>The Pink Effect</h1>
+    <h1 className='titlefont'>The Pink Effect</h1>
     <p>
       
     </p>

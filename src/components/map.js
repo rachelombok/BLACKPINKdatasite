@@ -7,7 +7,8 @@ const style = {
   width: "75%",
   height: "500px",
   margin: "auto",
-  display: 'block'
+  display: 'block',
+  border: '3px solid #ffb3df'
 };
 /*
 const mapStyle = (feature) => {
@@ -130,7 +131,7 @@ document.getElementById('map').style.cursor='default';
     layer.on("click",function(e){
       // this gets the id for each country, and we can use that to redirect to different pages since each 
       // json layer has different ids. the states are 1-50, and the countries are their official code
-      window.alert(layer.feature.properties.igfollowers);
+      // window.alert(layer.feature.properties.igfollowers);
   });
   }
   highlightFeature = (e) => {

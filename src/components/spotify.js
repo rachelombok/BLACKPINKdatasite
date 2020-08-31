@@ -103,7 +103,7 @@ class Spotify extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>Spotify </h1>
+    <h1 className='titlefont'>Spotify </h1>
     <p>
       
     </p>

@@ -126,6 +126,12 @@ strong {
 small {
   font-size: 80%;
 }
+::selection {
+  background: #ffb3df;
+}
+::-moz-selection {
+  background: #ffb3df;
+}
 
 sub,
 sup {

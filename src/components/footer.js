@@ -19,7 +19,7 @@ const FooterSection = styled.div`
 
 const Footer = () => (
   <FooterSection>
-    <a href='https://hihayk.github.io/scale'><h1>Data Sources</h1></a>&nbsp; · &nbsp;made with 🖤💗 by <a href='http://rachelombok.com' target='_blank' rel='noopener noreferrer'>Rachel Ombok</a>&nbsp; · &nbsp;<a href='https://github.com/hihayk/scale' target='_blank' rel='noopener noreferrer'>GitHub</a>
+    <a href='https://github.com/rachelombok/BlackpinkDSProject'><h1>Data Sources</h1></a>&nbsp; · &nbsp;made with 🖤💗 by <a href='http://rachelombok.com' target='_blank' rel='noopener noreferrer'>Rachel Ombok</a>&nbsp; · &nbsp;<a href='https://github.com/rachelombok' target='_blank' rel='noopener noreferrer'>GitHub</a>
     &nbsp; · &nbsp;
   </FooterSection>
 )

@@ -103,7 +103,7 @@ class Contact extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>Contact</h1>
+    <h1 className='titlefont'>Contact</h1>
     <p>
       
     </p>

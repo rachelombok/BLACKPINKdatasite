@@ -103,7 +103,7 @@ class YouTube extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>YouTube</h1>
+    <h1 className='titlefont'>YouTube</h1>
     <p>
       
     </p>

@@ -14,6 +14,9 @@ margin-top: 5rem;
   p{
     text-align: left;
   }
+  h1{
+
+  }
   h2 {
     margin: 2rem 0;
     color: white;
@@ -109,7 +112,7 @@ class About extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>About</h1>
+    <h1 className='titlefont'>About</h1>
     <p>
       
     </p>

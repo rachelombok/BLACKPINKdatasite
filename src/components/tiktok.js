@@ -103,7 +103,7 @@ class TikTok extends React.Component{
               
   <Container className='tint' fluid>
     <br/><br/><br/><br/>
-    <h1>TikTok</h1>
+    <h1 className='titlefont'>TikTok</h1>
     <p>
       
     </p>

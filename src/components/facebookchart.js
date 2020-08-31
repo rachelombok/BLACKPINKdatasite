@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Image, Badge, Jumbotron, Button, Row } from 'react-bootstrap';
+//import { Container, Col, Image, Badge, Jumbotron, Button, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../extra/css/about.css'
 import * as d3 from "d3";
@@ -104,6 +104,12 @@ const y = (d) => d.likes;
 const x = (d) => new Date(d.date);
 const bisectDate = bisector(x).left;
 
+const thousands_separators = (num) => {
+  var num_parts = num.toString().split(".");
+  num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return num_parts.join(".");
+}
+
 class FacebookChart extends React.Component {
   state = {
     data: [],
@@ -162,9 +168,9 @@ class FacebookChart extends React.Component {
 
     // Bounds
     const margin = {
-      top: 60,
+      top: 5,
       bottom: 60,
-      left: 80,
+      left: 0,
       right: 80,
     };
 
@@ -182,27 +188,8 @@ class FacebookChart extends React.Component {
     });
 
     return (
-      <div >
-        <Jumbotron fluid className='jumbotron-facebook'>
-              
-              <Container className='tint' fluid>
-                <br/><br/><br/><br/>
-                <h1 className='titlefont'>Facebook</h1>
-                <p>
-                  
-                </p>
-              </Container>
-            </Jumbotron>
-            
-            
-            
-            <AboutWrapper>
-                      
-                        <h1>Facebook</h1>
-                        
-                        
-                        <small>this is some lext and  a <a href='/'>links</a> </small>
-                        </AboutWrapper>
+      <div>
+       
         <svg width={width} height={height}>
           <LinearGradient from="#fbc2eb" to="#a6c1ee" id="gradient" />
           <Group top={margin.top} left={margin.left}>
@@ -246,11 +233,13 @@ class FacebookChart extends React.Component {
               tickStroke={"#fff"}
               numTicks={5}
               fill={"white"}
+              labelClassName='axistext'
+              tickClassName='axistext'
               tickLabelProps={
                 (/* value, index */) => ({
                   fill: "white",
                   fontSize: 9,
-                  fontFamily: "sans-serif",
+                  fontFamily: 'Cousine',
                   textAnchor: "end",
                 })
               }
@@ -260,7 +249,7 @@ class FacebookChart extends React.Component {
                 strokeWidth: 0,
                 stroke: "#fff",
                 paintOrder: "stroke",
-                fontFamily: "sans-serif",
+                fontFamily: 'Cousine',
                 textAnchor: "inherit",
               }}
             />
@@ -275,7 +264,7 @@ class FacebookChart extends React.Component {
                 (/* value, index */) => ({
                   fill: "white",
                   fontSize: 12,
-                  fontFamily: "sans-serif",
+                  fontFamily: "Cousine",
                   textAnchor: "middle",
                 })
               }
@@ -285,11 +274,44 @@ class FacebookChart extends React.Component {
                 strokeWidth: 0,
                 stroke: "#fff",
                 paintOrder: "stroke",
-                fontFamily: "sans-serif",
+                fontFamily: "Cousine",
                 textAnchor: "middle",
               }}
             />
           </Group>
+
+          {tooltipOpen && (
+            <g>
+            <Line
+              from={{ x: tooltipLeft, y: 0 }}
+              to={{ x: tooltipLeft, y: yMax }}
+              stroke='yellow'
+              strokeWidth={2}
+              pointerEvents="none"
+              strokeDasharray="5,2"
+            />
+            <circle
+              cx={tooltipLeft}
+              cy={tooltipTop}
+              r={4}
+              fill="red"
+              fillOpacity={0.1}
+              stroke="black"
+              strokeOpacity={0.1}
+              strokeWidth={2}
+              pointerEvents="none"
+            />
+            <circle
+              cx={tooltipLeft}
+              cy={tooltipTop + 5}
+              r={4}
+              fill='green'
+              stroke="white"
+              strokeWidth={2}
+              pointerEvents="none"
+            />
+          </g>
+          )}
         </svg>
         {tooltipOpen && (
           <Tooltip
@@ -303,16 +325,30 @@ class FacebookChart extends React.Component {
               pointerEvents: "none",
             }}
           >
-            {Object.entries(tooltipData).map(([key, value], i) => {
+
+            <div>
+              <strong>date</strong>
+              <p>{tooltipData.date}</p>
+            </div>
+            <div>
+              <strong>likes</strong>
+              <p>{thousands_separators(tooltipData.likes)}</p>
+            </div>
+            <div>
+              <strong>difference</strong>
+              <p>{thousands_separators(tooltipData.difference)}</p>
+            </div>
+            {/*{Object.entries(tooltipData).map(([key, value], i) => {
               return (
                 <React.Fragment key={`${key}-${i}`}>
                   <div>
                     <strong>{key}</strong>
+                    <p>{tooltipData.date}</p>
                   </div>
-                  <div>{value}</div>
+                  <div>{thousands_separators(value)}</div>
                 </React.Fragment>
               );
-            })}
+            })}*/}
           </Tooltip>
         )}
       </div>

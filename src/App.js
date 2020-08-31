@@ -19,6 +19,7 @@ import Tunefind from './components/tunefind.js';
 import Mapportal from './components/map.js';
 import Home from './components/home.js';
 import Contact from './components/contact.js';
+import TestWrap from './components/testrwap.js';
 import TestChart from './components/testchart.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Twitter from './components/twitter';
@@ -52,7 +53,8 @@ class App extends React.Component{
                 <Spotify/>
               </Route>
               <Route path='/facebook'>
-                <FacebookChart/>
+                <TestWrap/>
+                <FacebookChart />
               </Route>
               <Route path='/map'>
                 <Mapportal/>

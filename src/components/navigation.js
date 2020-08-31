@@ -86,8 +86,9 @@ class Navigation extends React.Component{
           <StyledNavDropdownItem className='navdropdownlink' href="/tiktok">TikTok</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/twitter">Twitter</StyledNavDropdownItem>
           <NavDropdown.Header>Music</NavDropdown.Header>
-          <StyledNavDropdownItem className='navdropdownlink' href="/lyrics">Lyrical Data</StyledNavDropdownItem>
-          <StyledNavDropdownItem className='navdropdownlink' href="/musicvideos">Music Video Data</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/lyrics">Lyrics</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/musicvideos">Music Videos</StyledNavDropdownItem>
+          <StyledNavDropdownItem className='navdropdownlink' href="/music">Music</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/youtube">YouTube</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/spotify">Spotify</StyledNavDropdownItem>
           

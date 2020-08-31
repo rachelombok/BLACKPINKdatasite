@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Col, Image, Badge, Jumbotron, Button, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../extra/css/home.css'
-import icecreampic from '../extra/images/icecream1.JPG'
+
 
 const AboutWrapper = styled.div`
 margin-top: 5rem;

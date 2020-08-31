@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col, Image, Badge, Jumbotron, Button, Row } from 'react-bootstrap';
+import { Container, Col, Image, Badge, Jumbotron, Button, Row, Form } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../extra/css/home.css'
 import icecreampic from '../extra/images/icecream1.JPG'
@@ -117,6 +117,20 @@ class Contact extends React.Component{
             <p style={{textAlign:'center'}}>
               Contact me to ask questions about this site, the best way to reach me isssss
             </p>
+            <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+            </Form.Group>
+
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Example textarea</Form.Label>
+            <Form.Control as="textarea" rows="3" placeholder='Message'/>
+          </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
             
             </AboutWrapper>
         </div>

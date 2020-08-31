@@ -14,9 +14,9 @@
 }
 
 .jumbotron-twitter{
-  background-image: url('../images/icecream2.JPG');
+  background-image: url('../images/d45.jpg');
     position: relative;
-    background-position: 1260px -100px;
+    background-position: 1280px -200px;
     background-size: cover;
     height: 300px; 
 }
@@ -70,10 +70,10 @@
 }
 
 .jumbotron-music{
-  background-image: url('../images/d41.jpeg');
+  background-image: url('../images/ktl5.jpg');
     position: relative;
-    background-position: 1280px -200px;
-    background-size: cover;
+    background-position: 1160px -100px;
+    background-size: 1100px;
     height: 300px; 
 }
 

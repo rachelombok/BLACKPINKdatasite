@@ -66,7 +66,7 @@ class Navigation extends React.Component{
     render(){
         return(
             <div>
-<Navbar bg="transparent" expand="lg">
+<Navbar bg="transparent" expand="lg" >
   <StyledNavbarBrand href="/"><img src={brand} width='150px'></img></StyledNavbarBrand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
@@ -84,7 +84,7 @@ class Navigation extends React.Component{
           <StyledNavDropdownItem className='navdropdownlink' href="/instagram">Instagram</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/facebook">Facebook</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/tiktok">TikTok</StyledNavDropdownItem>
-          
+          <StyledNavDropdownItem className='navdropdownlink' href="/twitter">Twitter</StyledNavDropdownItem>
           <NavDropdown.Header>Music</NavDropdown.Header>
           <StyledNavDropdownItem className='navdropdownlink' href="/lyrics">Lyrical Data</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/musicvideos">Music Video Data</StyledNavDropdownItem>

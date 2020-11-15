@@ -3,14 +3,17 @@ import React from "react";
 import styled from 'styled-components';
 import '../extra/css/about.css'
 import * as d3 from "d3";
+import { GridRows, GridColumns } from '@vx/grid';
 import { AxisLeft, AxisBottom } from "@vx/axis";
-import { scaleTime, scaleLinear } from "@vx/scale";
+import { scaleTime, scaleLinear, scaleThreshold } from "@vx/scale";
 import { AreaClosed, LinePath, Bar, Line } from "@vx/shape";
+import { LegendThreshold } from '@vx/legend';
 import { LinearGradient } from "@vx/gradient";
 import { Group } from "@vx/group";
 import { localPoint } from "@vx/event";
 import { withTooltip, Tooltip } from "@vx/tooltip";
 import { extent, max, bisector } from "d3-array";
+import { timeFormat } from 'd3-time-format';
 import "../extra/css/chart.css";
 const AboutWrapper = styled.div`
 margin-top: 5rem;
@@ -110,6 +113,16 @@ const thousands_separators = (num) => {
   return num_parts.join(".");
 }
 
+const threshold = scaleThreshold({
+  domain: [0.02, 0.04, 0.06, 0.08, 0.1],
+  range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
+});
+const background = '#3b6978';
+const background2 = '#204051';
+const accentColor = '#edffea';
+const accentColorDark = '#75daad';
+const formatDate = timeFormat("%b %d, '%y");
+
 class FacebookChart extends React.Component {
   state = {
     data: [],
@@ -168,7 +181,7 @@ class FacebookChart extends React.Component {
 
     // Bounds
     const margin = {
-      top: 5,
+      top: 0,
       bottom: 60,
       left: 0,
       right: 0,
@@ -190,9 +203,35 @@ class FacebookChart extends React.Component {
     return (
       <div>
        
-        <svg width={width+300} height={height}>
-          <LinearGradient from="#fbc2eb" to="#a6c1ee" id="gradient" />
-          <Group top={margin.top} left={margin.left+80}>
+        <svg width={width} height={height}>
+        <rect
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            fill="url(#area-background-gradient)"
+            rx={14}
+          />
+          <LinearGradient id="area-background-gradient" from={background} to={background2} />
+          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
+          
+          <GridRows
+            scale={yScale}
+            width={xMax}
+            strokeDasharray="3,3"
+            stroke={accentColor}
+            strokeOpacity={0.3}
+            pointerEvents="none"
+          />
+          <GridColumns
+            scale={xScale}
+            height={yMax}
+            strokeDasharray="3,3"
+            stroke={accentColor}
+            strokeOpacity={0.3}
+            pointerEvents="none"
+          />
+          <Group top={margin.top} left={margin.left}>
             <AreaClosed
               data={data}
               yScale={yScale}
@@ -200,10 +239,10 @@ class FacebookChart extends React.Component {
               y={(d) => yScale(y(d))}
               fill={"url(#gradient)"}
             />
-            <AxisLeft
+            {/*<AxisLeft
               scale={yScale}
-              top={0}
-              left={0}
+              top={margin.top}
+              left={margin.left}
               label={"Likes"}
               stroke={"#ffffff"}
               tickStroke={"#fff"}
@@ -212,7 +251,7 @@ class FacebookChart extends React.Component {
               labelClassName='axistext'
               tickClassName='axistext'
               tickLabelProps={
-                (/* value, index */) => ({
+                () => ({
                   fill: "white",
                   fontSize: 9,
                   fontFamily: 'Cousine',
@@ -228,7 +267,7 @@ class FacebookChart extends React.Component {
                 fontFamily: 'Cousine',
                 textAnchor: "inherit",
               }}
-            />
+            />*/}
             <LinePath
               data={data}
               x={(d) => xScale(x(d))}
@@ -294,7 +333,7 @@ class FacebookChart extends React.Component {
             />
             <circle
               cx={tooltipLeft}
-              cy={tooltipTop}
+              cy={tooltipTop+10}
               r={4}
               fill="red"
               fillOpacity={0.1}
@@ -305,7 +344,7 @@ class FacebookChart extends React.Component {
             />
             <circle
               cx={tooltipLeft}
-              cy={tooltipTop + 5}
+              cy={tooltipTop + 0}
               r={4}
               fill='green'
               stroke="white"
@@ -316,6 +355,7 @@ class FacebookChart extends React.Component {
           )}
         </svg>
         {tooltipOpen && (
+          <div>
           <Tooltip
             top={tooltipTop - 90}
             left={tooltipLeft + 150}
@@ -352,7 +392,28 @@ class FacebookChart extends React.Component {
               );
             })}*/}
           </Tooltip>
+          <Tooltip
+              top={yMax }
+              left={tooltipLeft + 200}
+              style={{
+                position: "absolute",
+                minWidth: 60,
+                backgroundColor: "rgba(0,0,0,0.9)",
+                color: "white",
+                pointerEvents: "none",
+              }}
+            >
+              {tooltipData.date}
+            </Tooltip>
+          </div>
         )}
+        <LegendThreshold
+        scale={threshold}
+        direction="column-reverse"
+        itemDirection="row-reverse"
+        labelMargin="0 20px 0 0"
+        shapeMargin="1px 0 0"
+      />
       </div>
     );
   }

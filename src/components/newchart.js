@@ -175,9 +175,33 @@ const ChartViewer = () => {
     }}
     
     
-    containerComponent={<VictoryVoronoiContainer
-      labels={({ datum }) => `Name: ${datum.date} score: ${datum.likes}`}
-       />}
+    containerComponent={
+    <VictoryVoronoiContainer
+      labels={({ datum }) => `Likes: ${datum.likes}
+       Difference: ${datum.difference}`}
+      labelComponent={
+        <VictoryTooltip  
+          dy={-7} 
+          constrainToVisibleArea 
+          
+          cornerRadius='0'
+          flyoutStyle={{
+            fill: "green",
+            stroke: "tomato", 
+            strokeWidth: 2,
+            fontSize:'300px' }}
+          flyoutHeight={35}
+          
+            style={{
+              fontSize: 20
+            }}
+        />
+      }
+      voronoiDimension="x"
+      fontSize='30px'
+      
+       />
+      }
     width='960'
     height='500'
     domainPadding={50}
@@ -186,7 +210,6 @@ const ChartViewer = () => {
 <VictoryLine
   x="date" 
   y="likes"
-  labelComponent={<VictoryTooltip/>}
   
   interpolation='natural'
   style = {{

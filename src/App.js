@@ -20,6 +20,8 @@ import Mapportal from './components/map.js';
 import Home from './components/home.js';
 import Contact from './components/contact.js';
 import TestWrap from './components/testrwap.js';
+import FusionChart from './components/fusionchart.js';
+import ChartViewer from './components/newchart.js';
 import TestChart from './components/testchart.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Twitter from './components/twitter';
@@ -39,6 +41,10 @@ class App extends React.Component{
             <Switch>
               <Route exact path='/'>
                 <Home/>
+              </Route>
+              <Route exact path='/fusion'>
+                <FusionChart/>
+                <ChartViewer/>
               </Route>
               <Route path='/about'>
                 <About/>

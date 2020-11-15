@@ -1,9 +1,14 @@
 .jumbotron-home{
   background-image: url('../images/hylt2.jpg');
     position: relative;
-    background-position: 50px -100px;
-    background-size: 1150px;
-    height: 300px; 
+    background-position: center -100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: auto;
+    min-height: 300px;
+    width: 100%;
+    
 }
 .jumbotron-instagram{
   background-image: url('../images/d43.jpg');
@@ -72,8 +77,8 @@
 .jumbotron-music{
   background-image: url('../images/ktl5.jpg');
     position: relative;
-    background-position: 1160px -100px;
-    background-size: 1100px;
+    background-position: center -200px;
+    background-size: cover;
     height: 300px; 
 }
 

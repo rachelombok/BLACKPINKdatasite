@@ -41,10 +41,18 @@ class App extends React.Component{
             <Switch>
               <Route exact path='/'>
                 <Home/>
-              </Route>
-              <Route exact path='/fusion'>
                 <FusionChart/>
                 <ChartViewer/>
+              </Route>
+              <Route exact path='/fusion'>
+                
+                <ChartViewer/>
+                
+                <div>
+                  <p>Lorem ipsum bbb</p>
+                  <br></br>
+                  <p>bcdsbchds</p>
+                </div>
               </Route>
               <Route path='/about'>
                 <About/>

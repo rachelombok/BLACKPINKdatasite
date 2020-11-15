@@ -155,7 +155,7 @@ class FacebookChart extends React.Component {
   render() {
     const { data } = this.state;
     const width = 1200;
-    const height = 640;
+    const height = 690;
 
     const {
       hideTooltip,
@@ -171,7 +171,7 @@ class FacebookChart extends React.Component {
       top: 5,
       bottom: 60,
       left: 0,
-      right: 80,
+      right: 0,
     };
 
     const xMax = width - margin.left - margin.right;
@@ -190,39 +190,15 @@ class FacebookChart extends React.Component {
     return (
       <div>
        
-        <svg width={width} height={height}>
+        <svg width={width+300} height={height}>
           <LinearGradient from="#fbc2eb" to="#a6c1ee" id="gradient" />
-          <Group top={margin.top} left={margin.left}>
+          <Group top={margin.top} left={margin.left+80}>
             <AreaClosed
               data={data}
               yScale={yScale}
               x={(d) => xScale(x(d))}
               y={(d) => yScale(y(d))}
               fill={"url(#gradient)"}
-            />
-            <LinePath
-              data={data}
-              x={(d) => xScale(x(d))}
-              y={(d) => yScale(y(d))}
-              strokeWidth={5}
-              stroke="#FFF"
-              strokeLinecap="round"
-              fill="transparent"
-            />
-            <Bar
-              x={0}
-              y={0}
-              width={width}
-              height={height}
-              fill="transparent"
-              onMouseMove={(event) =>
-                this.handleTooltip({ event, data, xScale, yScale })
-              }
-              onMouseLeave={(event) => hideTooltip()}
-              onTouchEnd={(event) => hideTooltip()}
-              onTouchMove={(event) =>
-                this.handleTooltip({ event, data, xScale, yScale })
-              }
             />
             <AxisLeft
               scale={yScale}
@@ -253,8 +229,34 @@ class FacebookChart extends React.Component {
                 textAnchor: "inherit",
               }}
             />
+            <LinePath
+              data={data}
+              x={(d) => xScale(x(d))}
+              y={(d) => yScale(y(d))}
+              strokeWidth={5}
+              stroke="#FFF"
+              strokeLinecap="round"
+              fill="transparent"
+            />
+            <Bar
+              x={0}
+              y={0}
+              width={width}
+              height={height}
+              fill="transparent"
+              onMouseMove={(event) =>
+                this.handleTooltip({ event, data, xScale, yScale })
+              }
+              onMouseLeave={(event) => hideTooltip()}
+              onTouchEnd={(event) => hideTooltip()}
+              onTouchMove={(event) =>
+                this.handleTooltip({ event, data, xScale, yScale })
+              }
+            />
+            
             <AxisBottom
               scale={xScale}
+              xMax={67}
               top={yMax}
               label={"Years"}
               stroke={"#ffffff"}
@@ -315,8 +317,8 @@ class FacebookChart extends React.Component {
         </svg>
         {tooltipOpen && (
           <Tooltip
-            top={tooltipTop}
-            left={tooltipLeft}
+            top={tooltipTop - 90}
+            left={tooltipLeft + 150}
             style={{
               position: "absolute",
               minWidth: 60,

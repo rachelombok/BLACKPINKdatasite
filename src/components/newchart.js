@@ -144,7 +144,11 @@ export default ChartViewer;
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { csv } from 'd3';
-import { VictoryLine, VictoryChart, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
+import { VictoryLine, VictoryChart, VictoryTooltip, VictoryVoronoiContainer, VitctoryAxis, VictoryAxis } from 'victory';
+
+
+const y = (d) => d.likes;
+const x = (d) => new Date(d.date);
 
 const row = d => {
   d.date = d.date;
@@ -160,65 +164,83 @@ const ChartViewer = () => {
     csv('https://raw.githubusercontent.com/rachelombok/BlackpinkDSProject/master/data/facebook/blackpink_facebook_data_history.csv', row)
     .then(data => {
       setData(data)
-    });
       console.log(data);
+    });
+      
     }, []);
     
   
   return (
     
-
 <VictoryChart
     style={{
       tickLabels: {fontSize: 120},
       
     }}
-    
-    
+    scale={{x: "time"}}
     containerComponent={
-    <VictoryVoronoiContainer
-      labels={({ datum }) => `Likes: ${datum.likes}
-       Difference: ${datum.difference}`}
-      labelComponent={
+      <VictoryVoronoiContainer
+        labels={({ datum }) => `Likes: ${datum.likes}
+          Difference: ${datum.difference}
+          Date: ${datum.date}`}
+        labelComponent={
         <VictoryTooltip  
-          dy={-7} 
-          constrainToVisibleArea 
-          
-          cornerRadius='0'
-          flyoutStyle={{
-            fill: "green",
-            stroke: "tomato", 
-            strokeWidth: 2,
-            fontSize:'300px' }}
-          flyoutHeight={35}
-          
-            style={{
-              fontSize: 20
-            }}
+            dy={-7} 
+            constrainToVisibleArea 
+            cornerRadius='0'
+            flyoutStyle={{
+              fill: "green",
+              stroke: "tomato", 
+              strokeWidth: 2,
+              fontSize:'300px' }}
+              flyoutHeight={35}
+              style={{
+                fontSize: 10
+              }}
         />
       }
       voronoiDimension="x"
-      fontSize='30px'
+      
       
        />
       }
-    width='960'
+    width='1200'
     height='500'
+    
     domainPadding={50}
-    padding={{ top: 10, bottom: 40, left: 80, right: 10 }}
+    padding={{ top: 50, bottom: 90, left: 150, right: 140 }}
     >
+      <VictoryAxis
+    padding={{left:600}}
+    tickCount={4}
+    
+    style={{
+      fontSize: 30,
+    
+    }}
+    tickFormat={t => new Date(t).getFullYear()}
+    label="Years"
+
+/>
+<VictoryAxis dependentAxis
+label='Followers'
+
+fixLabelOverlap={true}
+/>
 <VictoryLine
-  x="date" 
-  y="likes"
+  x='date'
+  y='likes'
   
-  interpolation='natural'
   style = {{
-    data: { stroke: "#c43a31" },
-    labels: { fontSize: 7 }
+    data: { stroke: "#c43a31" }
+    
   }}
+  
   data={data}
   
 />
+
+
 </VictoryChart>
 
 /*
@@ -249,6 +271,7 @@ const ChartViewer = () => {
       }}
       />
     </VictoryChart>
+    
 */
   );
 }

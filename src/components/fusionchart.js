@@ -1,91 +1,83 @@
-// Step 1 - Include react
-import React from "react";
+import React from 'react';
+import { appleStock } from '@vx/mock-data';
+import { Group } from '@vx/group';
+import { scaleTime, scaleLinear } from '@vx/scale';
+import { AreaClosed } from '@vx/shape';
+import { AxisLeft, AxisBottom } from '@vx/axis';
+import { LinearGradient } from '@vx/gradient';
+import { extent, max } from 'd3-array';
 
-// Step 2 - Include the react-fusioncharts component
-import ReactFC from "react-fusioncharts";
+const data = appleStock;
 
-// Step 3 - Include the fusioncharts library
-import FusionCharts from "fusioncharts";
-import TimeSeries from "fusioncharts/fusioncharts.timeseries";
-// Step 4 - Include the chart type
-import Column2D from "fusioncharts/fusioncharts.charts";
+const width = 750;
+const height = 400;
 
-// Step 5 - Include the theme as fusion
-import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion";
+const x = d => new Date(d.date);
+const y = d => d.close;
 
-// Step 6 - Adding the chart and theme as dependency to the core fusioncharts
-ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
+// Bounds
+const margin = {
+  top: 60,
+  bottom: 60,
+  left: 8,
+  right: 80,
+};
+const xMax = width - margin.left - margin.right;
+const yMax = height - margin.top - margin.bottom;
 
+const xScale = scaleTime({
+  range: [0, xMax],
+  domain: extent(data, x)
+});
+const yScale = scaleLinear({
+  range: [yMax, 0],
+  domain: [0, max(data, y)],
+});
 
-// STEP 2 - Chart Data
-const chartData = [
-    {
-      label: "Venezuela",
-      value: "290"
-    },
-    {
-      label: "Saudi",
-      value: "260"
-    },
-    {
-      label: "Canada",
-      value: "180"
-    },
-    {
-      label: "Iran",
-      value: "140"
-    },
-    {
-      label: "Russia",
-      value: "115"
-    },
-    {
-      label: "UAE",
-      value: "100"
-    },
-    {
-      label: "US",
-      value: "30"
-    },
-    {
-      label: "China",
-      value: "30"
-    }
-  ];
-  
-  // STEP 3 - Creating the JSON object to store the chart configurations
-  const chartConfigs = {
-    type: "column2d", // The chart type
-    width: "700", // Width of the chart
-    height: "400", // Height of the chart
-    dataFormat: "json", // Data type
-    dataSource: {
-      // Chart Configuration
-      chart: {
-        //Set the chart caption
-        caption: "Countries With Most Oil Reserves [2017-18]",
-        //Set the chart subcaption
-        subCaption: "In MMbbl = One Million barrels",
-        //Set the x-axis name
-        xAxisName: "Country",
-        //Set the y-axis name
-        yAxisName: "Reserves (MMbbl)",
-        numberSuffix: "K",
-        //Set the theme for your chart
-        theme: "fusion",
-        bgColor: "#DDDDDD",
-        bgAlpha: "50"
-      },
-      // Chart Data
-      data: chartData
-    }
-  };
-  
-  // STEP 4 - Creating the DOM element to pass the react-fusioncharts component
-  class FusionChart extends React.Component {
-    render() {
-      return (<ReactFC {...chartConfigs} />);
-    }
-  }
-  
-  export default FusionChart;
+class FusionChart extends React.Component{
+    render(){
+        return(
+    
+  <div>
+    <svg width={width} height={height}>
+      <LinearGradient
+        from='#fbc2eb'
+        to='#a6c1ee'
+        id='gradient'
+      />
+
+      <Group top={margin.top} left={margin.left}>
+
+        <AreaClosed
+          data={data}
+          xScale={xScale}
+          yScale={yScale}
+          x={x}
+          y={y}
+          fill={"url(#gradient)"}
+          stroke={""}
+        />
+
+        <AxisLeft
+          scale={yScale}
+          top={0}
+          left={0}
+          label={'Close Price ($)'}
+          stroke={'#1b1a1e'}
+          tickTextFill={'#1b1a1e'}
+        />
+
+        <AxisBottom
+          scale={xScale}
+          top={yMax}
+          label={'Years'}
+          stroke={'#1b1a1e'}
+          tickTextFill={'#1b1a1e'}
+        />
+
+      </Group>
+    </svg>
+  </div>)}
+}
+
+export default FusionChart;

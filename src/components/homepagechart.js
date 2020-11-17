@@ -7,7 +7,7 @@ import { GridRows, GridColumns } from '@vx/grid';
 import { AxisLeft, AxisBottom } from "@vx/axis";
 import { scaleTime, scaleLinear, scaleThreshold } from "@vx/scale";
 import { AreaClosed, LinePath, Bar, Line } from "@vx/shape";
-import { LegendThreshold } from '@vx/legend';
+import { LegendThreshold, LegendOrdinal } from '@vx/legend';
 import { LinearGradient } from "@vx/gradient";
 import { Group } from "@vx/group";
 import { localPoint } from "@vx/event";
@@ -15,6 +15,7 @@ import { withTooltip, Tooltip, defaultStyles } from "@vx/tooltip";
 import { extent, max, bisector } from "d3-array";
 import { timeFormat } from 'd3-time-format';
 import "../extra/css/chart.css";
+import Ordinal from "@vx/legend/lib/legends/Ordinal";
 const AboutWrapper = styled.div`
 margin-top: 5rem;
   margin-left: 5rem;
@@ -118,21 +119,21 @@ const threshold = scaleThreshold({
   range: ['#f2f0f7', '#dadaeb', '#bcbddc', '#9e9ac8', '#756bb1', '#54278f'],
 });
 const background = '#de87cb';
-const background2 = '#22415c';
-const accentColor = '#edffea';
-const accentColorDark = '#75daad';
+const background2 = '#1b1b1c';
+const accentColor = '#7ab4eb';
+const accentColorDark = '#7ab4eb';
 const formatDate = timeFormat("%b %d, '%y");
 
 const tooltipStyles = {
   ...defaultStyles,
-  background,
+  backgroundColor: 'black',
   border: '1px solid white',
   color: 'white',
 };
 
-class FacebookChart extends React.Component {
+class HomepageChart extends React.Component {
   state = {
-    data: [],
+    data: []
   };
 
   async componentDidMount() {
@@ -152,6 +153,8 @@ class FacebookChart extends React.Component {
       .catch(function (err) {
         throw err;
       });
+
+     
   }
 
   handleTooltip = ({ event, data, xScale, yScale }) => {
@@ -221,7 +224,16 @@ class FacebookChart extends React.Component {
           />
           <LinearGradient id="area-background-gradient" from={background} to={background2} />
           <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
-          
+          <Ordinal
+        scale={threshold}
+        direction="row"
+        
+        shapeHeight={70}
+        
+        itemDirection="row-reverse"
+        labelMargin="10 15px 10 10"
+        shapeMargin="1px 0 0"
+      />
           <GridRows
             scale={yScale}
             width={xMax}
@@ -239,6 +251,7 @@ class FacebookChart extends React.Component {
             pointerEvents="none"
           />
           <Group top={margin.top} left={margin.left}>
+              
             <AreaClosed
               data={data}
               yScale={yScale}
@@ -246,7 +259,7 @@ class FacebookChart extends React.Component {
               y={(d) => yScale(y(d))}
               strokeWidth={1}
               stroke="url(#area-gradient)"
-              fill="transparent"
+              fill="url(#area-gradient)"
             />
             {/*<AxisLeft
               scale={yScale}
@@ -351,11 +364,12 @@ class FacebookChart extends React.Component {
               strokeWidth={2}
               pointerEvents="none"
             />
+            
             <circle
               cx={tooltipLeft}
               cy={tooltipTop + 0}
               r={4}
-              fill='green'
+              fill={accentColor}
               stroke="white"
               strokeWidth={2}
               pointerEvents="none"
@@ -370,8 +384,6 @@ class FacebookChart extends React.Component {
             left={tooltipLeft + 150}
             style={tooltipStyles}
           >
-
-            
             <div>
               <strong>likes</strong>
               <p>{thousands_separators(tooltipData.likes)}</p>
@@ -397,7 +409,7 @@ class FacebookChart extends React.Component {
               left={tooltipLeft + 200}
               style={{
                 ...defaultStyles,
-                
+                border: '1px solid white',
                 textAlign: 'center',
                 position: "absolute",
                 minWidth: 60,
@@ -410,16 +422,10 @@ class FacebookChart extends React.Component {
             </Tooltip>
           </div>
         )}
-        <LegendThreshold
-        scale={threshold}
-        direction="column-reverse"
-        itemDirection="row-reverse"
-        labelMargin="0 20px 0 0"
-        shapeMargin="1px 0 0"
-      />
+        
       </div>
     );
   }
 }
 
-export default withTooltip(FacebookChart);
+export default withTooltip(HomepageChart);

@@ -18,6 +18,7 @@
     "@vx/tooltip": "0.0.198",
     "bootstrap": "^4.5.1",
     "d3": "^5.16.0",
+    "d3-time-format": "^3.0.0",
     "fusioncharts": "^3.15.3",
     "leaflet": "^1.6.0",
     "react": "^16.13.1",

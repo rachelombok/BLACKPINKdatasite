@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, useParams } from "react-router-dom";
-import { Navbar,Nav,NavDropdown,Form,FormControl,Button, Popover, OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { Navbar,Nav,NavDropdown,Form,FormControl,Button, Popover, OverlayTrigger, Tooltip, Dropdown } from 'react-bootstrap'
 import '../extra/css/navbar.css';
 import brand from '../extra/images/pinkeffect3.png';
 
@@ -79,8 +79,8 @@ class Navigation extends React.Component{
       <p className='divider' ></p>
       <StyledNavLink className='navlink' href="/about" >About</StyledNavLink>
       <StyledNavLink className='navlink' href="/contact" >Contact</StyledNavLink>
-      <StyledNavDropdown title="Legend" id="basic-nav-dropdown" bsPrefix=''>
-        <NavDropdown.Header>Social Media</NavDropdown.Header>
+      <StyledNavDropdown title="Legend" id="basic-nav-dropdown" bsPrefix='' style={{backgroundColor: 'black'}}>
+        <NavDropdown.Header className="super-colors">Social Media</NavDropdown.Header>
           <StyledNavDropdownItem className='navdropdownlink' href="/instagram">Instagram</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/facebook">Facebook</StyledNavDropdownItem>
           <StyledNavDropdownItem className='navdropdownlink' href="/tiktok">TikTok</StyledNavDropdownItem>
@@ -101,6 +101,7 @@ class Navigation extends React.Component{
     </StyledNav>
   </Navbar.Collapse>
 </Navbar>
+
 
 
 

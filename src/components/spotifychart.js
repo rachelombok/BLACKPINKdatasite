@@ -104,7 +104,7 @@ margin-top: 5rem;
   }
 }
 `;
-const y = (d) => d.likes;
+const y = (d) => d.followers;
 const x = (d) => new Date(d.date);
 const bisectDate = bisector(x).left;
 
@@ -131,56 +131,28 @@ const tooltipStyles = {
   color: 'white',
 };
 
-class HomepageChart extends React.Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            data: [], igdata: []
-        }
-      }
-  //state = {
- //   data: [], igdata: []
- // };
+class SpotifyChart extends React.Component {
+  state = {
+    data: []
+  };
 
   async componentDidMount() {
-   
-
-      d3.csv(
-        "https://raw.githubusercontent.com/rachelombok/BlackpinkDSProject/master/data/instagram/blackpink_instagramdata_history.csv"
-      )
-        .then((data) => {
-          data.forEach((d) => {
-            return (
-              (d.date = d.date),
-              (d.followers = +d.followers),
-              (d.difference = +d.difference)
-            );
-          });
-          this.setState({ igdata: data });
-          console.log(this.state.igdata);
-        })
-        .catch(function (err) {
-          throw err;
+    d3.csv(
+      "https://raw.githubusercontent.com/rachelombok/BlackpinkDSProject/master/data/spotify/blackpink_spotifydata_followers_history.csv"
+    )
+      .then((data) => {
+        data.forEach((d) => {
+          return (
+            (d.date = d.date),
+            (d.followers = +d.followers),
+            (d.followerdifference = +d.followerdifference)
+          );
         });
-
-        d3.csv(
-            "https://raw.githubusercontent.com/rachelombok/BlackpinkDSProject/master/data/facebook/blackpink_facebook_data_history.csv"
-          )
-            .then((data) => {
-              data.forEach((d) => {
-                return (
-                  (d.date = d.date),
-                  (d.likes = +d.likes),
-                  (d.difference = +d.difference)
-                );
-              });
-              this.setState({ data: data });
-              console.log(this.state.data);
-            })
-            .catch(function (err) {
-              throw err;
-            });
+        this.setState({ data: data });
+      })
+      .catch(function (err) {
+        throw err;
+      });
 
      
   }
@@ -199,35 +171,15 @@ class HomepageChart extends React.Component {
     showTooltip({
       tooltipData: d,
       tooltipLeft: point.x,
-      tooltipTop: yScale(d.likes),
-    });
-  };
-
-  handleIGTooltip = ({ event, data, xScale, yScale }) => {
-    const { showIGTooltip } = this.props;
-    const point = localPoint(event);
-    const x0 = xScale.invert(point.x);
-    const index = bisectDate(data, x0, 1);
-    const d0 = data[index - 1];
-    const d1 = data[index];
-    let d = d0;
-    if (d1 && d1.date) {
-      d = x0 - x(d0) > x(d1) - x0 ? d1 : d0;
-    }
-    showIGTooltip({
-      tooltipData: d,
-      tooltipLeft: point.x,
       tooltipTop: yScale(d.followers),
     });
   };
 
   render() {
     const { data } = this.state;
-    const { igdata } = this.state.igdata;
     const width = 1200;
     const height = 690;
 
-    
     const {
       hideTooltip,
       tooltipData,
@@ -338,7 +290,6 @@ class HomepageChart extends React.Component {
                 textAnchor: "inherit",
               }}
             />*/}
-            
             <LinePath
               data={data}
               x={(d) => xScale(x(d))}
@@ -348,7 +299,6 @@ class HomepageChart extends React.Component {
               strokeLinecap="round"
               fill="transparent"
             />
-            
             <Bar
               x={0}
               y={0}
@@ -364,7 +314,6 @@ class HomepageChart extends React.Component {
                 this.handleTooltip({ event, data, xScale, yScale })
               }
             />
-            
             
             <AxisBottom
               scale={xScale}
@@ -436,12 +385,12 @@ class HomepageChart extends React.Component {
             style={tooltipStyles}
           >
             <div>
-              <strong>likes</strong>
-              <p>{thousands_separators(tooltipData.likes)}</p>
+              <strong>followers</strong>
+              <p>{thousands_separators(tooltipData.followers)}</p>
             </div>
             <div>
               <strong>difference</strong>
-              <p>{thousands_separators(tooltipData.difference)}</p>
+              <p>{thousands_separators(tooltipData.followerdifference)}</p>
             </div>
             {/*{Object.entries(tooltipData).map(([key, value], i) => {
               return (
@@ -479,4 +428,4 @@ class HomepageChart extends React.Component {
   }
 }
 
-export default withTooltip(HomepageChart);
+export default withTooltip(SpotifyChart);

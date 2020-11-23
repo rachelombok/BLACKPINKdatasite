@@ -190,7 +190,7 @@ svg {
   overflow: hidden;
   vertical-align: middle;
 }
-table {
+table{
   border-collapse: collapse;
 }
 caption {

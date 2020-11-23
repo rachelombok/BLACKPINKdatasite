@@ -23,6 +23,11 @@ import TestWrap from './components/testrwap.js';
 import FusionChart from './components/fusionchart.js';
 import ChartViewer from './components/newchart.js';
 import HomepageChart from './components/homepagechart.js';
+import InstagramChart from './components/instagramchart.js';
+import BPTrackTable from './components/bpmusictrackdata.js';
+import KpopTrackTable from './components/kpopmusicdata.js';
+import BoombayahPieChart from './components/boombayahpiechart.js';
+import SpotifyChart from './components/spotifychart.js';
 import TestChart from './components/testchart.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Twitter from './components/twitter';
@@ -66,6 +71,7 @@ class App extends React.Component{
               </Route>
               <Route path='/spotify'>
                 <Spotify/>
+                <SpotifyChart/>
               </Route>
               <Route path='/facebook'>
                 <TestWrap/>
@@ -76,6 +82,7 @@ class App extends React.Component{
               </Route>
               <Route path='/instagram'>
                 <Instagram/>
+                <InstagramChart/>
               </Route>
               <Route path='/tiktok'>
                 <TikTok/>
@@ -88,9 +95,13 @@ class App extends React.Component{
               </Route>
               <Route path='/musicvideos'>
                 <MusicVideos/>
+                <BoombayahPieChart/>
               </Route>
               <Route path='/music'>
                 <Music/>
+                <BPTrackTable/>
+                <br></br>
+                <KpopTrackTable/>
               </Route>
               <Route path='/lyrics'>
                 <Lyrics/>

@@ -1,0 +1,24 @@
+
+
+.table thead{
+    color: white;
+    font-family: 'Cousine', monospace;
+}
+
+.table tbody{
+    color: #ffb3df;
+    font-family: 'Cousine', monospace;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    color: white;
+  }
+.tracktable{
+    width: 1600px;
+    margin: auto;
+    
+}
+table.table-hover tbody tr td:hover {
+    background-color: white;
+    color: black;
+}

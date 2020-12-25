@@ -91,8 +91,22 @@ margin-top: 5rem;
     }
   }
 }
+.form-label{
+  color: red;
+}
+.form-group{
+  height: 70px;
+}
+.form-control{
+  background: orange;
+  height: 50px;
+}
 `;
 
+const formstyle = {
+  width: '800px',
+  margin: 'auto'
+}
 
 
 class Contact extends React.Component{
@@ -100,42 +114,30 @@ class Contact extends React.Component{
       return(
         <div>
             <Jumbotron fluid className='jumbotron-contact'>
-              
-  <Container className='tint' fluid>
-    <br/><br/><br/><br/>
-    <h1 className='titlefont'>Contact</h1>
-    <p>
-      
-    </p>
-  </Container>
-</Jumbotron>
+                    
+        <Container className='tint' fluid>
+          <br/><br/><br/><br/>
+          <h1 className='titlefont'>Contact</h1>
+          <p>
+            
+          </p>
+        </Container>
+      </Jumbotron>
 
 
 
-<AboutWrapper>
+          <AboutWrapper>
             <h1>Questions?</h1>
             <p style={{textAlign:'center'}}>
               Contact me to ask questions about this site, the best way to reach me isssss
             </p>
-            <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-            </Form.Group>
-
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Example textarea</Form.Label>
-            <Form.Control as="textarea" rows="3" placeholder='Message'/>
-          </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
+            
             
             </AboutWrapper>
         </div>
       );
     }
 }
+
 
 export default Contact;

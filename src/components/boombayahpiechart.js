@@ -11,6 +11,21 @@ import * as d3 from "d3";
 import { extent, max, bisector } from "d3-array";
 import { timeFormat } from 'd3-time-format';
 
+const textStyle = {
+  fontFamily: 'Cousine, monospace',
+  fontWeight: 'bold'
+}
+
+const titleStyle = {
+  fontFamily: 'Cousine, monospace',
+  fontWeight: 'bold',
+  fill: 'white',
+  marginLeft: '500px',
+  display: 'block',
+  textAlign: 'center',
+  position: 'absolute'
+}
+
 function Label({ x, y, children }) {
     return (
       <text
@@ -106,6 +121,7 @@ class BoombayahPieChart extends React.Component{
                 fill="url('#gradients')"
             />
             <Group top={height / 2 - margin.top} left={width / 2}>
+            
                 <Pie
                 
                 data={this.state.data}
@@ -125,12 +141,16 @@ class BoombayahPieChart extends React.Component{
                 padAngle={0.002}
                 
                 >
+                 
                     {(pie) => {
                     return pie.arcs.map((arc, i) => {
                     const opacity = (arc.data.frequency) / 350;
                     const [centroidX, centroidY] = pie.path.centroid(arc);
                     return (
-                        <g key={`letters-${arc.data.frequency}-${i}`}>
+                        <g>
+                          <text
+                          style={titleStyle}
+                          >Boombayah</text>
                         <path
                             d={pie.path(arc)}
                             onMouseEnter={() => {
@@ -147,6 +167,7 @@ class BoombayahPieChart extends React.Component{
                             fill={"#000000"}
                     fillOpacity={opacity}
                         />
+                        
                         <text
                             fill="white"
                             textAnchor="middle"
@@ -154,6 +175,7 @@ class BoombayahPieChart extends React.Component{
                             y={centroidY}
                             dy=".33em"
                             fontSize={12}
+                            style={textStyle}
                         >
                             {arc.data.frequency > 100 ? arc.data.label : null}
                             {arc.data.frequency == text & arc.data.label == currlabel ? 
@@ -164,7 +186,7 @@ class BoombayahPieChart extends React.Component{
                     );
                     });
                 }}
-               
+             
                 
                     </Pie> 
                     

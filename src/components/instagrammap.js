@@ -51,7 +51,7 @@ const thousands_separators = (num) => {
     return num_parts.join(".");
   }
 
-class Mapportal extends React.Component {
+class InstagramMap extends React.Component {
     
   componentDidMount() {
     // create map
@@ -76,11 +76,20 @@ class Mapportal extends React.Component {
 		style: mapStyle,
 		onEachFeature: this.onEachFeature
     }).addTo(this.map);
-    
+
     var overlay = {
 			"Countries": this.countries
 			
   };
+
+  var ComunidadeIcon = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif',
+    iconSize: [32, 37],
+    iconAnchor: [16, 37],
+    popupAnchor: [0, -28]
+  });
+
+  
   this.info = L.control();
 
   this.info.onAdd = function (map) {
@@ -91,9 +100,15 @@ class Mapportal extends React.Component {
   this.info.update = function (props) {
     this._div.innerHTML = '<h4>Instagram Follower Data</h4>' +  
     (props ? '<b>' + props.name  + '</b><br>' + 
-    (props.igfollowers ? 'Instagram Followers: ' + thousands_separators(props.igfollowers) : "There is no Instagram follower data")
-    
-    : 'Hover over a country</b>');
+    (props.igfollowers ? 'Instagram Followers: ' + thousands_separators(props.igfollowers) : "There is no Instagram follower data") +
+    (props.igcity ? 
+      (props.igcity[0] ? '<br><b>' + props.igcity[0] + '</b>: ' + thousands_separators(props.igcityfollowers[0]) : '') +
+      (props.igcity[1] ? '<br><b>' + props.igcity[1] + '</b>: ' + thousands_separators(props.igcityfollowers[1]): '') +
+      (props.igcity[2] ? '<br><b>' + props.igcity[2] + '</b>: ' + thousands_separators(props.igcityfollowers[2]): '') +
+      (props.igcity[2] ? '<br><b>' + props.igcity[3] + '</b>: ' + thousands_separators(props.igcityfollowers[3]): '') +
+      (props.igcity[2] ? '<br><b>' + props.igcity[4] + '</b>: ' + thousands_separators(props.igcityfollowers[4]): '') + 
+      (props.igcity[2] ? '<br><b>' + props.igcity[5] + '</b>: ' + thousands_separators(props.igcityfollowers[5]): '') : ''
+    ) : 'Hover over a country</b>');
   };
 
   this.info.addTo(this.map);
@@ -134,6 +149,11 @@ document.getElementById('map').style.cursor='default';
       // window.alert(layer.feature.properties.igfollowers);
   });
   }
+
+  displayCities = (city, followers) => {
+    return city;
+  }
+
   highlightFeature = (e) => {
     var layer = e.target;
 
@@ -164,4 +184,4 @@ document.getElementById('map').style.cursor='default';
   }
 }
 
-export default Mapportal;
+export default InstagramMap;

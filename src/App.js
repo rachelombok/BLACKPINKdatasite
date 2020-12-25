@@ -16,9 +16,10 @@ import MusicVideos from './components/musicvideos.js';
 import Music from './components/music.js';
 import TikTok from './components/tiktok.js';
 import Tunefind from './components/tunefind.js';
-import Mapportal from './components/map.js';
+import InstagramMap from './components/instagrammap.js';
 import Home from './components/home.js';
 import Contact from './components/contact.js';
+import ContactMe from './components/contactform.js';
 import TestWrap from './components/testrwap.js';
 import FusionChart from './components/fusionchart.js';
 import ChartViewer from './components/newchart.js';
@@ -65,6 +66,7 @@ class App extends React.Component{
               </Route>
               <Route path='/contact'>
                 <Contact/>
+                <ContactMe/>
               </Route>
               <Route path='/youtube'>
                 <YouTube/>
@@ -78,11 +80,12 @@ class App extends React.Component{
                 <FacebookChart />
               </Route>
               <Route path='/map'>
-                <Mapportal/>
+                
               </Route>
               <Route path='/instagram'>
                 <Instagram/>
                 <InstagramChart/>
+                <InstagramMap/>
               </Route>
               <Route path='/tiktok'>
                 <TikTok/>

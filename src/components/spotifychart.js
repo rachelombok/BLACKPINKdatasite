@@ -105,6 +105,7 @@ margin-top: 5rem;
 }
 `;
 const y = (d) => d.followers;
+const ylistener = (d) => d.monthlylisteners;
 const x = (d) => new Date(d.date);
 const bisectDate = bisector(x).left;
 
@@ -133,7 +134,7 @@ const tooltipStyles = {
 
 class SpotifyChart extends React.Component {
   state = {
-    data: []
+    data: [], listeners: []
   };
 
   async componentDidMount() {
@@ -149,11 +150,35 @@ class SpotifyChart extends React.Component {
           );
         });
         this.setState({ data: data });
+        console.log(this.state.data);
       })
       .catch(function (err) {
         throw err;
       });
 
+      d3.csv(
+        "https://raw.githubusercontent.com/rachelombok/BlackpinkDSProject/master/data/spotify/blackpink_spotifydata_listeners_history.csv"
+      )
+        .then((datanew) => {
+          datanew.forEach((d) => {
+            return (
+              (d.date = d.date),
+              (d.monthlylisteners = +d.monthlylisteners),
+              (d.monthlylistenersdifference = +d.monthlylistenersdifference)
+            );
+            
+          });
+          
+          this.setState({ listeners: datanew });
+          console.log(this.state.listeners);
+        })
+        .catch(function (err) {
+          throw err;
+        });
+        
+
+        
+        
      
   }
 
@@ -175,17 +200,40 @@ class SpotifyChart extends React.Component {
     });
   };
 
+  handlelistenerTooltip = ({ event, listeners, xScalelistener, yScalelistener }) => {
+    const { showTooltip } = this.props;
+    const point = localPoint(event);
+    const x0 = xScalelistener.invert(point.x);
+    const index = bisectDate(listeners, x0, 1);
+    const d0 = listeners[index - 1];
+    const d1 = listeners[index];
+    let d = d0;
+    if (d1 && d1.date) {
+      d = x0 - x(d0) > x(d1) - x0 ? d1 : d0;
+    }
+    showTooltip({
+      tooltipData: d,
+      tooltipLeft: point.x,
+      tooltipTop: yScalelistener(d.monthlylisteners),
+    });
+  };
+
   render() {
-    const { data } = this.state;
+    const data = this.state.data;
+    const listeners = this.state.listeners;
     const width = 1200;
     const height = 690;
 
     const {
       hideTooltip,
       tooltipData,
+      tooltiplistenerData,
       tooltipTop,
+      tooltiplistenerTop,
       tooltipLeft,
+      tooltiplistenerLeft,
       showTooltip,
+      showlistenerTooltip,
       tooltipOpen,
     } = this.props;
 
@@ -202,13 +250,25 @@ class SpotifyChart extends React.Component {
 
     const xScale = scaleTime({
       range: [0, xMax],
-      domain: extent(data, x),
+      domain: extent(data, x, listeners),
     });
 
     const yScale = scaleLinear({
       range: [yMax, 0],
-      domain: [0, max(data, y)],
+      domain: [0, max(data, y, listeners)],
     });
+
+    const xScalelistener = scaleTime({
+      range: [0, xMax],
+      domain: extent(listeners, x, data),
+    });
+
+    const yScalelistener = scaleLinear({
+      range: [yMax, 0],
+      domain: [0,  max(listeners, ylistener, data)],
+    });
+
+    
 
     return (
       <div>
@@ -242,6 +302,7 @@ class SpotifyChart extends React.Component {
             strokeOpacity={0.3}
             pointerEvents="none"
           />
+          
           <GridColumns
             scale={xScale}
             height={yMax}
@@ -257,6 +318,16 @@ class SpotifyChart extends React.Component {
               yScale={yScale}
               x={(d) => xScale(x(d))}
               y={(d) => yScale(y(d))}
+              strokeWidth={1}
+              stroke="url(#area-gradient)"
+              fill="url(#area-gradient)"
+            />
+
+            <AreaClosed
+              data={listeners}
+              yScale={yScalelistener}
+              x={(d) => xScalelistener(x(d))}
+              y={(d) => yScalelistener(ylistener(d))}
               strokeWidth={1}
               stroke="url(#area-gradient)"
               fill="url(#area-gradient)"
@@ -299,21 +370,52 @@ class SpotifyChart extends React.Component {
               strokeLinecap="round"
               fill="transparent"
             />
+
+            <LinePath
+              data={listeners}
+              x={(d) => xScalelistener(x(d))}
+              y={(d) => yScalelistener(ylistener(d))}
+              strokeWidth={5}
+              stroke="#FFF"
+              strokeLinecap="round"
+              fill="transparent"
+            />
             <Bar
               x={0}
               y={0}
               width={width}
               height={height}
               fill="transparent"
-              onMouseMove={(event) =>
+              onMouseMove={(event) =>{
                 this.handleTooltip({ event, data, xScale, yScale })
+                this.handlelistenerTooltip({ event, listeners, xScalelistener, yScalelistener })
+              }
+              }
+              onMouseLeave={(event) => hideTooltip()}
+              onTouchEnd={(event) => hideTooltip()}
+              onTouchMove={(event) =>{
+                this.handleTooltip({ event, data, xScale, yScale })
+                this.handlelistenerTooltip({ event, listeners, xScalelistener, yScalelistener })
+              }
+              }
+            />
+
+            {/*<Bar
+              x={0}
+              y={0}
+              width={width}
+              height={height}
+              fill="transparent"
+              onMouseMove={(event) =>
+                this.handlelistenerTooltip({ event, listeners, xScalelistener, yScalelistener })
               }
               onMouseLeave={(event) => hideTooltip()}
               onTouchEnd={(event) => hideTooltip()}
               onTouchMove={(event) =>
-                this.handleTooltip({ event, data, xScale, yScale })
+                this.handlelistenerTooltip({ event, listeners, xScalelistener, yScalelistener })
               }
-            />
+            />   */}   
+
             
             <AxisBottom
               scale={xScale}
@@ -342,7 +444,7 @@ class SpotifyChart extends React.Component {
               }}
             />
           </Group>
-
+          
           {tooltipOpen && (
             <g>
             <Line
@@ -374,6 +476,8 @@ class SpotifyChart extends React.Component {
               strokeWidth={2}
               pointerEvents="none"
             />
+
+            
           </g>
           )}
         </svg>
@@ -386,12 +490,18 @@ class SpotifyChart extends React.Component {
           >
             <div>
               <strong>followers</strong>
+              {console.log(tooltipData, tooltiplistenerData)}
               <p>{thousands_separators(tooltipData.followers)}</p>
             </div>
             <div>
               <strong>difference</strong>
               <p>{thousands_separators(tooltipData.followerdifference)}</p>
             </div>
+            <div>
+              <strong>difference</strong>
+              <p>{thousands_separators(tooltipData.monthlylisteners)}</p>
+            </div>
+            
             {/*{Object.entries(tooltipData).map(([key, value], i) => {
               return (
                 <React.Fragment key={`${key}-${i}`}>
@@ -405,7 +515,7 @@ class SpotifyChart extends React.Component {
             })}*/}
           </Tooltip>
           <Tooltip
-              top={yMax }
+              top={yMax}
               left={tooltipLeft + 200}
               style={{
                 ...defaultStyles,
@@ -416,6 +526,7 @@ class SpotifyChart extends React.Component {
                 backgroundColor: "rgba(0,0,0,0.9)",
                 color: "white",
                 pointerEvents: "none",
+                transform: 'translateX(-50%)'
               }}
             >
               {formatDate(new Date(tooltipData.date))}

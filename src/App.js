@@ -19,6 +19,7 @@ import Tunefind from './components/tunefind.js';
 import InstagramMap from './components/instagrammap.js';
 import Home from './components/home.js';
 import Contact from './components/contact.js';
+import GChart from './components/g2chart.js';
 import ContactMe from './components/contactform.js';
 import TestWrap from './components/testrwap.js';
 import FusionChart from './components/fusionchart.js';
@@ -108,6 +109,9 @@ class App extends React.Component{
               </Route>
               <Route path='/lyrics'>
                 <Lyrics/>
+              </Route>
+              <Route path='/g2'>
+                <GChart/>
               </Route>
               
             </Switch>

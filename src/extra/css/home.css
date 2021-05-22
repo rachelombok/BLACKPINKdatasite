@@ -4,7 +4,8 @@
     background-position: center -100px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; /* this is what makes it scroll stay on screen */
+    
     height: auto;
     min-height: 300px;
     width: 100%;

@@ -105,9 +105,9 @@ class InstagramMap extends React.Component {
       (props.igcity[0] ? '<br><b>' + props.igcity[0] + '</b>: ' + thousands_separators(props.igcityfollowers[0]) : '') +
       (props.igcity[1] ? '<br><b>' + props.igcity[1] + '</b>: ' + thousands_separators(props.igcityfollowers[1]): '') +
       (props.igcity[2] ? '<br><b>' + props.igcity[2] + '</b>: ' + thousands_separators(props.igcityfollowers[2]): '') +
-      (props.igcity[2] ? '<br><b>' + props.igcity[3] + '</b>: ' + thousands_separators(props.igcityfollowers[3]): '') +
-      (props.igcity[2] ? '<br><b>' + props.igcity[4] + '</b>: ' + thousands_separators(props.igcityfollowers[4]): '') + 
-      (props.igcity[2] ? '<br><b>' + props.igcity[5] + '</b>: ' + thousands_separators(props.igcityfollowers[5]): '') : ''
+      (props.igcity[3] ? '<br><b>' + props.igcity[3] + '</b>: ' + thousands_separators(props.igcityfollowers[3]): '') +
+      (props.igcity[4] ? '<br><b>' + props.igcity[4] + '</b>: ' + thousands_separators(props.igcityfollowers[4]): '') + 
+      (props.igcity[5] ? '<br><b>' + props.igcity[5] + '</b>: ' + thousands_separators(props.igcityfollowers[5]): '') : ''
     ) : 'Hover over a country</b>');
   };
 

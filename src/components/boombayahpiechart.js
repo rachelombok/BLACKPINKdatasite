@@ -150,7 +150,7 @@ class BoombayahPieChart extends React.Component{
                         <g>
                           <text
                           style={titleStyle}
-                          >Boombayah</text>
+                          ></text>
                         <path
                             d={pie.path(arc)}
                             onMouseEnter={() => {
